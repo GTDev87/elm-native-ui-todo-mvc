@@ -1,0 +1,3 @@
+rootProject.name = 'MeTime'
+
+include ':app'
