@@ -2,4 +2,4 @@ const { AppRegistry } = require('react-native');
 const Elm = require('./elm');
 const component = Elm.Main.start();
 
-AppRegistry.registerComponent('MeTime', () => component);
+AppRegistry.registerComponent('TodoMVC', () => component);

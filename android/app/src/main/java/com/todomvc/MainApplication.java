@@ -1,4 +1,4 @@
-package com.metime;
+package com.todomvc;
 
 import android.app.Application;
 
