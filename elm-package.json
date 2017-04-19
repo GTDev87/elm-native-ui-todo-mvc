@@ -4,7 +4,7 @@
     "repository": "https://github.com/ohanhi/elm-native-ui.git",
     "license": "BSD3",
     "source-directories": [
-        ".",
+        "./app",
         "../../src"
     ],
     "exposed-modules": [],

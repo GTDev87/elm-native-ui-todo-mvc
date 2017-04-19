@@ -6,43 +6,48 @@ import NativeUi.Elements as Elements exposing (..)
 import NativeUi.Events exposing (..)
 import NativeUi.Image as Image exposing (..)
 
+import Todo.Model exposing (Model, init)
+import Todo.Msg exposing (Msg)
 
 -- MODEL
 
 
-type alias Model =
-  Int
+--type alias Model =
+--  Int
 
 
-model : Model
-model =
-  90012
+--model : Model
+--model =
+--  90012
 
 
--- UPDATE
+---- UPDATE
 
 
-type Msg
-  = Increment
-  | Decrement
+--type Msg
+--  = Increment
+--  | Decrement
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
   case msg of
-    Increment ->
-      ( model + 1, Cmd.none )
+    Todo.Msg.NoOp ->
+      ( model, Cmd.none )
+  --case msg of
+  --  Increment ->
+  --    ( model + 1, Cmd.none )
 
-    Decrement ->
-      ( model - 1, Cmd.none )
+  --  Decrement ->
+  --    ( model - 1, Cmd.none )
 
 
 
--- VIEW
+---- VIEW
 
 
 view : Model -> Node Msg
-view count =
+view model =
   let
     imageSource =
       { uri = "https://raw.githubusercontent.com/futurice/spiceprogram/master/assets/img/logo/chilicorn_no_text-128.png"
@@ -68,7 +73,7 @@ view count =
           , Style.marginBottom 30
           ]
         ]
-        [ Ui.string ("Counter: " ++ toString count)
+        [ Ui.string ("Counter: " ++ toString 9001)
         ]
       , Elements.view
         [ Ui.style
@@ -77,32 +82,32 @@ view count =
           , Style.justifyContent "space-between"
           ]
         ]
-        [ button Decrement "#d33" "-"
-        , button Increment "#3d3" "+"
+        [ -- button Decrement "#d33" "-"
+        --, button Increment "#3d3" "+"
         ]
       ]
 
 
-button : Msg -> String -> String -> Node Msg
-button msg color content =
-  text
-      [ Ui.style
-        [ Style.color "white"
-        , Style.textAlign "center"
-        , Style.backgroundColor color
-        , Style.paddingTop 5
-        , Style.paddingBottom 5
-        , Style.width 30
-        , Style.fontWeight "bold"
-        , Style.shadowColor "#000"
-        , Style.shadowOpacity 0.25
-        , Style.shadowOffset 1 1
-        , Style.shadowRadius 5
-        , Style.transform { defaultTransform | rotate = Just "10deg" }
-        ]
-      , onPress msg
-      ]
-      [ Ui.string content ]
+--button : Msg -> String -> String -> Node Msg
+--button msg color content =
+--  text
+--      [ Ui.style
+--        [ Style.color "white"
+--        , Style.textAlign "center"
+--        , Style.backgroundColor color
+--        , Style.paddingTop 5
+--        , Style.paddingBottom 5
+--        , Style.width 30
+--        , Style.fontWeight "bold"
+--        , Style.shadowColor "#000"
+--        , Style.shadowOpacity 0.25
+--        , Style.shadowOffset 1 1
+--        , Style.shadowRadius 5
+--        , Style.transform { defaultTransform | rotate = Just "10deg" }
+--        ]
+--      , onPress msg
+--      ]
+--      [ Ui.string content ]
 
 
 
@@ -112,7 +117,7 @@ button msg color content =
 main : Program Never Model Msg
 main =
   Ui.program
-    { init = ( model, Cmd.none )
+    { init = init
     , view = view
     , update = update
     , subscriptions = \_ -> Sub.none
