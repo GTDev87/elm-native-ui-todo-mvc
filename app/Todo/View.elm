@@ -103,14 +103,19 @@ todoTaskList visibility tasks =
     --  ]
     Elements.view
       []
-      [ Elements.touchableHighlight
-        []
-        []
-      , Elements.view []
-        [ Ui.string "Mark all as complete" ]
-      , Elements.view []
-        (List.map todoItem (List.filter isVisible tasks))
+      [ Elements.touchableHighlight [] [Elements.view [] []]
+      , Elements.text [] [ Ui.string "Mark all as complete" ]
+      , Elements.view [] (List.map todoItem (List.filter isVisible tasks))
       ]
+
+
+infoFooter : Node Msg
+infoFooter =
+  Elements.view []
+    [ Elements.text [] [ Ui.string "Double-click to edit a todo" ]
+    , Elements.text [] [ Ui.string "Written by Evan Czaplicki" ]
+    , Elements.text [] [ Ui.string "Part of TodoMVC" ]
+    ]
 
 view : Model -> Node Msg
 view model =
@@ -146,5 +151,5 @@ view model =
           todoTaskList control.visibility taskList
         --, lazy2 ControlsView.controls control.visibility taskList
         ]
-      --, infoFooter
+      , infoFooter
       ]

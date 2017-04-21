@@ -6,7 +6,7 @@ import NativeUi.Elements as Elements exposing (..)
 import NativeUi.Events exposing (..)
 import NativeUi.Image as Image exposing (..)
 
-import Todo.View exposing (view)
+import Todo.View as TodoView
 import Todo.Model exposing (Model, init)
 import Todo.Msg exposing (Msg)
 
@@ -86,6 +86,8 @@ view model =
         [ -- button Decrement "#d33" "-"
         --, button Increment "#3d3" "+"
         ]--
+
+      , TodoView.view model
       ]
 
 
