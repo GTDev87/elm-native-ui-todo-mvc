@@ -11,7 +11,7 @@ import Todo.Msg exposing (..)
 import Todo.Model exposing (Model)
 
 --import TaskEntry.View as TaskEntryView
---import Controls.View as ControlsView
+import Control.View as ControlView
 --import InfoFooter.View exposing (infoFooter)
 
 todoItem : Task.Model -> Node Msg
@@ -149,7 +149,7 @@ view model =
         --lazy TaskEntryView.taskEntry taskEntry
         --, 
           todoTaskList control.visibility taskList
-        --, lazy2 ControlsView.controls control.visibility taskList
+        , ControlView.controls control.visibility taskList
         ]
       , infoFooter
       ]
