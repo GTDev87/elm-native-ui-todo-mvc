@@ -63,8 +63,8 @@ import Todo.Msg as TodoMsg
 --        [ text ("Clear completed (" ++ toString tasksCompleted ++ ")") ]
 --      ]
 
-controls : String -> List Task.Model -> Node TodoMsg.Msg
-controls visibility tasks =
+view : String -> List Task.Model -> Node TodoMsg.Msg
+view visibility tasks =
   let
     tasksCompleted =
       List.length (List.filter .completed tasks)
