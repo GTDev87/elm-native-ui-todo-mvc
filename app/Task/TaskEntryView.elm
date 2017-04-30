@@ -1,5 +1,6 @@
 module Task.TaskEntryView exposing (..)
 import NativeUi.Elements as Elements exposing (..)
+import NativeUi.Style as Style
 
 --import Html exposing (..)
 --import Html.Attributes exposing (..)
@@ -21,16 +22,18 @@ taskEntry taskEntry =
       []
       [ Ui.string "todos" ]
 
-    --, input
-    --  [ id "new-todo"
-    --  , placeholder "What needs to be done?"
-    --  , autofocus True
-    --  , value taskEntry.description
-    --  , name "newTodo"
-    --  , on "input" (Json.map (MsgForTaskEntry << Update) targetValue)
-    --  , onEnter NoOp (MsgForTaskList <| Add taskEntry.id taskEntry.description)
-    --  ]
-    --  []
+    , Elements.textInput
+      [ Ui.style 
+        [ Style.width 80
+        , Style.height 80
+        ]
+      --, constantMsgEvent "onChangeText" (MsgForTaskList <| Add taskEntry.id taskEntry.description)
+      --, onSubmitEditing NoOp (MsgForTaskList <| Add taskEntry.id taskEntry.description)
+      ]
+      []
+    , Elements.text
+      []
+      [ Ui.string "After todos" ]
     ]
 
   --header [ id "header" ]
