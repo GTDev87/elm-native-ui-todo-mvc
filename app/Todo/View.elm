@@ -9,6 +9,8 @@ import Task.Model as Task
 --import Html.Lazy exposing (lazy, lazy2)
 import Todo.Msg exposing (..)
 import Todo.Model exposing (Model)
+
+import Task.TaskEntryView as TaskEntryView
 import TaskList.View
 
 --import TaskEntry.View as TaskEntryView
@@ -33,8 +35,8 @@ view model =
     taskList =
       model.taskList
 
-    --taskEntry =
-    --  model.taskEntry
+    taskEntry =
+      model.taskEntry
 
     control =
       model.control
@@ -55,10 +57,8 @@ view model =
     Elements.view
       [ ]
       [ Elements.view [ ]
-        [ 
-        --lazy TaskEntryView.taskEntry taskEntry
-        --, 
-          TaskList.View.view control.visibility taskList
+        [ TaskEntryView.taskEntry taskEntry
+        , TaskList.View.view control.visibility taskList
         , ControlView.view control.visibility taskList
         ]
       , infoFooter

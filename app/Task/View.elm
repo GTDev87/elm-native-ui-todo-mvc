@@ -51,7 +51,7 @@ view todo =
       [ Elements.touchableHighlight
         []
         []
-      , Elements.view []
+      , Elements.text []
         [ Ui.string todo.description ]
       , Elements.text
         []
