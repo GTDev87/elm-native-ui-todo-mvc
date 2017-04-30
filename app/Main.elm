@@ -10,6 +10,8 @@ import Todo.View as TodoView
 import Todo.Model exposing (Model, init)
 import Todo.Msg exposing (Msg)
 
+import Task.Update as TaskUpdate
+
 -- MODEL
 
 
@@ -32,9 +34,12 @@ import Todo.Msg exposing (Msg)
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
-  case msg of
-    Todo.Msg.NoOp ->
-      ( model, Cmd.none )
+
+  ({ model
+    | taskEntry = TaskUpdate.update msg model.taskEntry
+    --, taskList = TaskList.update msg model.taskList
+    --, control = Control.update msg model.control
+  }, Cmd.none)
   --case msg of
   --  Increment ->
   --    ( model + 1, Cmd.none )

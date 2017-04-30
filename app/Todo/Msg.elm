@@ -6,7 +6,7 @@ import Control.Msg as Control
 
 type Msg
   = NoOp
-  --| MsgForTaskEntry Task.Msg
+  | MsgForTaskEntry Task.Msg
   --| MsgForTaskList TaskList.Msg
   --| MsgForTask Int Task.Msg
   --| MsgForControl Control.Msg

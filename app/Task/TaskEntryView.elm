@@ -1,17 +1,21 @@
 module Task.TaskEntryView exposing (..)
 import NativeUi.Elements as Elements exposing (..)
 import NativeUi.Style as Style
+import NativeUi.Events as Events
 
 --import Html exposing (..)
 --import Html.Attributes exposing (..)
 --import Html.Events exposing (..)
 import Todo.Msg as Todo exposing (..)
 import NativeUi as Ui exposing (Node)
+import Task.Msg exposing (..)
+
 --import Msg.TaskList exposing (..)
 --import Msg.Task exposing (..)
 --import View.Events exposing (onEnter)
 import Task.Model exposing (Model)
---import Json.Decode as Json
+import Json.Decode as Decode
+import Json.Encode as Encode
 
 
 taskEntry : Task.Model.Model -> Node Todo.Msg
@@ -27,7 +31,10 @@ taskEntry taskEntry =
         [ Style.width 80
         , Style.height 80
         ]
-      --, constantMsgEvent "onChangeText" (MsgForTaskList <| Add taskEntry.id taskEntry.description)
+      , Ui.property "value" (Encode.string taskEntry.description)
+      --, Events.constantMsgEvent "onChangeText" (Json.map (MsgForTaskEntry << Update))
+      , Ui.on "onChangeText" (Decode.map (MsgForTaskEntry << Update) Decode.string)
+
       --, onSubmitEditing NoOp (MsgForTaskList <| Add taskEntry.id taskEntry.description)
       ]
       []
