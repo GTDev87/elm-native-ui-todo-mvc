@@ -2,20 +2,22 @@ module TaskList.View exposing (..)
 
 import NativeUi.Elements as Elements exposing (..)
 import NativeUi as Ui exposing (Node)
-import TaskList.Model as TaskList
+
+import TaskList.Model
 import Task.View
+import Todo.Msg
 
 --import Html exposing (..)
 --import Html.Attributes exposing (..)
 --import Html.Lazy exposing (lazy, lazy2)
-import Todo.Msg exposing (..)
-import Todo.Model exposing (Model)
+
+--import Todo.Model exposing (Model)
 
 --import TaskEntry.View as TaskEntryView
-import Control.View as ControlView
+--import Control.View as ControlView
 --import InfoFooter.View exposing (infoFooter)
 
-view : String -> TaskList.Model -> Node Msg
+view : String -> TaskList.Model.Model -> Node Todo.Msg.Msg
 view visibility tasks =
   let
     isVisible todo =

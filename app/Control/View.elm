@@ -11,8 +11,9 @@ module Control.View exposing (..)
 
 import NativeUi.Elements as Elements exposing (..)
 import NativeUi as Ui exposing (Node)
-import Task.Model as Task
-import Todo.Msg as TodoMsg
+
+import Task.Model
+import Todo.Msg
 
 --import Html exposing (..)
 --import Html.Attributes exposing (..)
@@ -63,7 +64,7 @@ import Todo.Msg as TodoMsg
 --        [ text ("Clear completed (" ++ toString tasksCompleted ++ ")") ]
 --      ]
 
-view : String -> List Task.Model -> Node TodoMsg.Msg
+view : String -> List Task.Model.Model -> Node Todo.Msg.Msg
 view visibility tasks =
   let
     tasksCompleted =
@@ -116,7 +117,7 @@ view visibility tasks =
 --  li [ onClick (MsgForControl <| ChangeVisibility visibility) ]
 --    [ a [ href uri, classList [ ( "selected", visibility == actualVisibility ) ] ] [ text visibility ] ]
 
-visibilitySwap : String -> String -> String -> Node TodoMsg.Msg
+visibilitySwap : String -> String -> String -> Node Todo.Msg.Msg
 visibilitySwap uri visibility actualVisibility =
   Elements.view 
     [

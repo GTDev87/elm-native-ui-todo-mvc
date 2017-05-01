@@ -1,26 +1,26 @@
 module Todo.Model exposing (..)
 
-import Task.Model as Task
-import TaskList.Model as TaskList
-import Control.Model as Control
-import Todo.Msg exposing (Msg)
+import Task.Model
+import TaskList.Model
+import Control.Model
+import Todo.Msg
 
 
 type alias Model =
-  { taskEntry : Task.Model
-  , taskList : TaskList.Model
-  , control : Control.Model
+  { taskEntry : Task.Model.Model
+  , taskList : TaskList.Model.Model
+  , control : Control.Model.Model
   }
 
 
 initialModel : Model
 initialModel =
-  { taskEntry = Task.model
-  , taskList = TaskList.model
-  , control = Control.model
+  { taskEntry = Task.Model.model
+  , taskList = TaskList.Model.model
+  , control = Control.Model.model
   }
 
 
-init : ( Model, Cmd Msg )
+init : ( Model, Cmd Todo.Msg.Msg )
 init =
   initialModel ! []

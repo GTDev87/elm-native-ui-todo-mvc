@@ -1,27 +1,27 @@
 module Task.Update exposing (..)
 
-import Todo.Msg as Todo exposing (..)
-import Task.Msg as Msg exposing (..)
+import Todo.Msg
+import Task.Msg
 --import Msg.TaskList exposing (..)
-import Task.Model exposing (Model, newTask)
+import Task.Model
 
 
-update : Todo.Msg -> Model -> Model
+update : Todo.Msg.Msg -> Task.Model.Model -> Task.Model.Model
 update msgFor task =
   case msgFor of
-    MsgForTaskEntry msg ->
+    Todo.Msg.MsgForTaskEntry msg ->
       updateTask msg task
 
     --MsgForTask _ msg ->
     --  updateTask msg task
 
     --MsgForTaskList (Add id _) ->
-    --    newTask (id + 1) ""
+    --    Task.Model.newTask (id + 1) ""
 
     _ ->
       task
 
-updateTask : Msg.Msg -> Model -> Model
+updateTask : Task.Msg.Msg -> Task.Model.Model -> Task.Model.Model
 updateTask msg model =
   case msg of
     --Check isCompleted ->
@@ -30,5 +30,5 @@ updateTask msg model =
     --Editing isEditing ->
     --  { model | editing = isEditing }
 
-    Msg.Update description ->
+    Task.Msg.Update description ->
       { model | description = description }

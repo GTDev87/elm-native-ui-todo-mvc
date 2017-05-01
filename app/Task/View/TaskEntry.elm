@@ -1,4 +1,4 @@
-module Task.TaskEntryView exposing (..)
+module Task.View.TaskEntry exposing (..)
 import NativeUi.Elements as Elements exposing (..)
 import NativeUi.Style as Style
 import NativeUi.Events as Events

@@ -6,11 +6,11 @@ import NativeUi.Elements as Elements exposing (..)
 import NativeUi.Events exposing (..)
 import NativeUi.Image as Image exposing (..)
 
-import Todo.View as TodoView
-import Todo.Model exposing (Model, init)
-import Todo.Msg exposing (Msg)
+import Todo.View
+import Todo.Model
+import Todo.Msg
 
-import Task.Update as TaskUpdate
+import Task.Update
 
 -- MODEL
 
@@ -32,11 +32,11 @@ import Task.Update as TaskUpdate
 --  | Decrement
 
 
-update : Msg -> Model -> ( Model, Cmd Msg )
+update : Todo.Msg.Msg -> Todo.Model.Model -> ( Todo.Model.Model, Cmd Todo.Msg.Msg )
 update msg model =
 
   ({ model
-    | taskEntry = TaskUpdate.update msg model.taskEntry
+    | taskEntry = Task.Update.update msg model.taskEntry
     --, taskList = TaskList.update msg model.taskList
     --, control = Control.update msg model.control
   }, Cmd.none)
@@ -52,7 +52,7 @@ update msg model =
 ---- VIEW
 
 
-view : Model -> Node Msg
+view : Todo.Model.Model -> Node Todo.Msg.Msg
 view model =
   let
     imageSource =
@@ -92,7 +92,7 @@ view model =
         --, button Increment "#3d3" "+"
         ]--
 
-      , TodoView.view model
+      , Todo.View.view model
       ]
 
 
@@ -122,10 +122,10 @@ view model =
 -- PROGRAM
 
 
-main : Program Never Model Msg
+main : Program Never Todo.Model.Model Todo.Msg.Msg
 main =
   Ui.program
-    { init = init
+    { init = Todo.Model.init
     , view = view
     , update = update
     , subscriptions = \_ -> Sub.none
