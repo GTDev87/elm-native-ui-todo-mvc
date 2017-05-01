@@ -52,7 +52,7 @@ view model =
     --  --, infoFooter
     --  ]
     Elements.view
-      [ ]
+      []
       [ Elements.view [ ]
         [ Task.View.TaskEntry.taskEntry taskEntry
         , TaskList.View.view control.visibility taskList

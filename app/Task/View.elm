@@ -2,6 +2,7 @@ module Task.View exposing (..)
 
 import NativeUi.Elements as Elements exposing (..)
 import NativeUi as Ui exposing (Node)
+import NativeUi.Style as Style
 --import TaskList.Model as TaskList
 
 --import Html exposing (..)
@@ -48,7 +49,14 @@ view todo =
 
   
   Elements.touchableHighlight
-  []
+  [ 
+    Ui.style
+    [ Style.paddingLeft 15
+    , Style.height 60
+    , Style.borderWidth 1
+    , Style.borderColor "#ededed"
+    ]
+  ]
   [
     Elements.view
     []

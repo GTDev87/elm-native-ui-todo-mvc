@@ -41,9 +41,6 @@ taskEntry taskEntry =
       , Ui.on "onSubmitEditing" (Decode.succeed (Todo.Msg.MsgForTaskList <| TaskList.Msg.Add taskEntry.id taskEntry.description))
       ]
       []
-    , Elements.text
-      []
-      [ Ui.string "After todos" ]
     ]
 
   --header [ id "header" ]
