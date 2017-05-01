@@ -30,13 +30,14 @@ taskEntry taskEntry =
 
     , Elements.textInput
       [ Ui.style 
-        [ Style.width 80
-        , Style.height 80
+        [ Style.paddingLeft 15
+        , Style.height 60
+        , Style.borderWidth 1
+        , Style.borderColor "#ededed"
         ]
       , Ui.property "value" (Encode.string taskEntry.description)
       --, Events.constantMsgEvent "onChangeText" (Json.map (MsgForTaskEntry << Update))
       , Ui.on "onChangeText" (Decode.map (Todo.Msg.MsgForTaskEntry << Task.Msg.Update) Decode.string)
-
       , Ui.on "onSubmitEditing" (Decode.succeed (Todo.Msg.MsgForTaskList <| TaskList.Msg.Add taskEntry.id taskEntry.description))
       ]
       []

@@ -9,7 +9,6 @@ import NativeUi.Image as Image exposing (..)
 import Todo.View
 import Todo.Model
 import Todo.Msg
-import TaskList.Update
 
 import Todo.Update
 
@@ -50,8 +49,9 @@ view model =
       }
   in
     Elements.view
-      [ Ui.style [ Style.alignItems "center" ]
-      ]
+    [ Ui.style [Style.flex 1] ]
+    [ Elements.view
+      [ Ui.style [ Style.alignItems "center" ] ]
       [ image
         [ Ui.style
           [ Style.height 64
@@ -80,10 +80,11 @@ view model =
         [ -- button Decrement "#d33" "-"
         --, button Increment "#3d3" "+"
         ]--
-
-      , Todo.View.view model
       ]
-
+    , Elements.view
+      []
+      [ Todo.View.view model ]
+    ]
 
 --button : Msg -> String -> String -> Node Msg
 --button msg color content =
