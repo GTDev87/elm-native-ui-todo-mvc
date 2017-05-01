@@ -2,7 +2,7 @@ module Task.Update exposing (..)
 
 import Todo.Msg
 import Task.Msg
---import Msg.TaskList exposing (..)
+import TaskList.Msg
 import Task.Model
 
 
@@ -15,8 +15,8 @@ update msgFor task =
     --MsgForTask _ msg ->
     --  updateTask msg task
 
-    --MsgForTaskList (Add id _) ->
-    --    Task.Model.newTask (id + 1) ""
+    Todo.Msg.MsgForTaskList (TaskList.Msg.Add id _) ->
+      Task.Model.newTask (id + 1) ""
 
     _ ->
       task

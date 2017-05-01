@@ -46,18 +46,20 @@ view todo =
   --    []
   --  ]
 
-  Elements.view []
-    [ Elements.view []
-      [ Elements.touchableHighlight
-        []
-        []
-      , Elements.text []
-        [ Ui.string todo.description ]
-      , Elements.text
-        []
-        []
-      ]
+  
+  Elements.touchableHighlight
+  []
+  [
+    Elements.view
+    []
+    [ Elements.text
+      []
+      [ Ui.string todo.description ]
+    , Elements.text
+      []
+      []
     , Elements.textInput
       []
       []
     ]
+  ]

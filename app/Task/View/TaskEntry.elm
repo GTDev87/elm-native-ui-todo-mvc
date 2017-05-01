@@ -6,19 +6,21 @@ import NativeUi.Events as Events
 --import Html exposing (..)
 --import Html.Attributes exposing (..)
 --import Html.Events exposing (..)
-import Todo.Msg as Todo exposing (..)
 import NativeUi as Ui exposing (Node)
-import Task.Msg exposing (..)
+
 
 --import Msg.TaskList exposing (..)
 --import Msg.Task exposing (..)
 --import View.Events exposing (onEnter)
-import Task.Model exposing (Model)
+import Task.Model
+import TaskList.Msg
+import Task.Msg
+import Todo.Msg
 import Json.Decode as Decode
 import Json.Encode as Encode
 
 
-taskEntry : Task.Model.Model -> Node Todo.Msg
+taskEntry : Task.Model.Model -> Node Todo.Msg.Msg
 taskEntry taskEntry =
   Elements.view
     []
@@ -33,9 +35,9 @@ taskEntry taskEntry =
         ]
       , Ui.property "value" (Encode.string taskEntry.description)
       --, Events.constantMsgEvent "onChangeText" (Json.map (MsgForTaskEntry << Update))
-      , Ui.on "onChangeText" (Decode.map (MsgForTaskEntry << Update) Decode.string)
+      , Ui.on "onChangeText" (Decode.map (Todo.Msg.MsgForTaskEntry << Task.Msg.Update) Decode.string)
 
-      --, onSubmitEditing NoOp (MsgForTaskList <| Add taskEntry.id taskEntry.description)
+      , Ui.on "onSubmitEditing" (Decode.succeed (Todo.Msg.MsgForTaskList <| TaskList.Msg.Add taskEntry.id taskEntry.description))
       ]
       []
     , Elements.text

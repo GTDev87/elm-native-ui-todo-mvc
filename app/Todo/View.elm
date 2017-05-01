@@ -9,7 +9,6 @@ import NativeUi as Ui exposing (Node)
 --import Html.Lazy exposing (lazy, lazy2)
 import Todo.Msg
 import Todo.Model
-import Task.Model as Task
 
 import Task.View.TaskEntry
 import TaskList.View
@@ -17,9 +16,6 @@ import Control.View
 
 --import TaskEntry.View as TaskEntryView
 --import InfoFooter.View exposing (infoFooter)
-
-
-
 
 
 infoFooter : Node Todo.Msg.Msg
