@@ -2,6 +2,7 @@ module Todo.View exposing (..)
 
 import NativeUi.Elements as Elements exposing (..)
 import NativeUi as Ui exposing (Node)
+import NativeUi.Style as Style exposing (defaultTransform)
 
 
 --import Html exposing (..)
@@ -38,6 +39,23 @@ view model =
     control =
       model.control
   in
+    Elements.view
+    [ Ui.style [Style.flex 1] ]
+    [ Elements.view
+      []
+      [ Elements.view
+        []
+        [ Elements.view [ ]
+          [ Task.View.TaskEntry.taskEntry taskEntry
+          , TaskList.View.view control.visibility taskList
+          , Control.View.view control.visibility taskList
+          ]
+        , infoFooter
+        ]
+      ]
+    ]
+
+
     --div
     --  [ class "todomvc-wrapper"
     --  , style [ ( "visibility", "hidden" ) ]
@@ -51,12 +69,4 @@ view model =
     --    ]
     --  --, infoFooter
     --  ]
-    Elements.view
-      []
-      [ Elements.view [ ]
-        [ Task.View.TaskEntry.taskEntry taskEntry
-        , TaskList.View.view control.visibility taskList
-        , Control.View.view control.visibility taskList
-        ]
-      , infoFooter
-      ]
+    
