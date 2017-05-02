@@ -60,8 +60,8 @@ view visibility tasks =
     Elements.view
       []
       [ Elements.touchableHighlight [] [Elements.view [] []]
-      , Elements.text [] [ Ui.string "Mark all as complete" ]
       , Elements.view
         []
         (List.map Task.View.view (List.filter isVisible tasks))
+      , Elements.text [] [ Ui.string "Mark all as complete" ]
       ]

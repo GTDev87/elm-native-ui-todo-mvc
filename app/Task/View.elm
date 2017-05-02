@@ -49,25 +49,39 @@ view todo =
 
   
   Elements.touchableHighlight
-  [ 
-    Ui.style
-    [ Style.paddingLeft 15
-    , Style.height 60
-    , Style.borderWidth 1
-    , Style.borderColor "#ededed"
+  []
+  [ Elements.view
+    [ Ui.style
+      [ Style.borderBottomWidth 1
+      , Style.borderBottomColor "#ededed"
+      , Style.flexDirection "row"
+      , Style.paddingTop 15
+      , Style.paddingRight 60
+      ]
     ]
-  ]
-  [
-    Elements.view
-    []
-    [ Elements.text
-      []
-      [ Ui.string todo.description ]
-    , Elements.text
-      []
-      []
-    , Elements.textInput
-      []
-      []
+    [
+      Elements.view
+      [ Ui.style
+        [ Style.flex 1
+        , Style.flexDirection "column"
+        , Style.alignItems "flex-start"
+        ]
+      ]
+      [ Elements.text
+        [ Ui.style
+          [ Style.fontSize 24
+          , Style.paddingBottom 15
+          , Style.paddingTop 1
+          , Style.marginLeft 10
+          ]
+        ]
+        [ Ui.string todo.description ]
+      , Elements.text
+        []
+        []
+      , Elements.textInput
+        []
+        []
+      ]
     ]
   ]

@@ -24,11 +24,7 @@ taskEntry : Task.Model.Model -> Node Todo.Msg.Msg
 taskEntry taskEntry =
   Elements.view
     []
-    [ Elements.text
-      []
-      [ Ui.string "todos" ]
-
-    , Elements.textInput
+    [ Elements.textInput
       [ Ui.style 
         [ Style.paddingLeft 15
         , Style.height 60
@@ -36,6 +32,7 @@ taskEntry taskEntry =
         , Style.borderColor "#ededed"
         ]
       , Ui.property "value" (Encode.string taskEntry.description)
+      , Ui.property "placeholder" (Encode.string "What needs to be done?")
       --, Events.constantMsgEvent "onChangeText" (Json.map (MsgForTaskEntry << Update))
       , Ui.on "onChangeText" (Decode.map (Todo.Msg.MsgForTaskEntry << Task.Msg.Update) Decode.string)
       , Ui.on "onSubmitEditing" (Decode.succeed (Todo.Msg.MsgForTaskList <| TaskList.Msg.Add taskEntry.id taskEntry.description))
