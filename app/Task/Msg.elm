@@ -2,5 +2,5 @@ module Task.Msg exposing (..)
 
 type Msg
   = Update String
-  --| Check Bool
+  | Check Bool
   --| Editing Bool

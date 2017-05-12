@@ -1,13 +1,10 @@
 module Todo.View exposing (..)
 
-import NativeUi.Elements as Elements exposing (..)
-import NativeUi as Ui exposing (Node)
-import NativeUi.Style as Style exposing (defaultTransform)
+import NativeApi.Platform
+import NativeUi
+import NativeUi.Elements
+import NativeUi.Style
 
-
---import Html exposing (..)
---import Html.Attributes exposing (..)
---import Html.Lazy exposing (lazy, lazy2)
 import Todo.Msg
 import Todo.Model
 
@@ -19,15 +16,15 @@ import Control.View
 --import InfoFooter.View exposing (infoFooter)
 
 
-infoFooter : Node Todo.Msg.Msg
+infoFooter : NativeUi.Node Todo.Msg.Msg
 infoFooter =
-  Elements.view []
-    [ Elements.text [] [ Ui.string "Double-click to edit a todo" ]
-    , Elements.text [] [ Ui.string "Written by Evan Czaplicki" ]
-    , Elements.text [] [ Ui.string "Part of TodoMVC" ]
+  NativeUi.Elements.view []
+    [ NativeUi.Elements.text [] [ NativeUi.string "Double-click to edit a todo" ]
+    , NativeUi.Elements.text [] [ NativeUi.string "Written by Evan Czaplicki" ]
+    , NativeUi.Elements.text [] [ NativeUi.string "Part of TodoMVC" ]
     ]
 
-view : Todo.Model.Model -> Node Todo.Msg.Msg
+view : Todo.Model.Model -> NativeUi.Node Todo.Msg.Msg
 view model =
   let
     taskList =
@@ -39,13 +36,13 @@ view model =
     control =
       model.control
   in
-    Elements.view
-    [ Ui.style [Style.flex 1] ]
-    [ Elements.view
+    NativeUi.Elements.view
+    [ NativeUi.style [NativeUi.Style.flex 1] ]
+    [ NativeUi.Elements.view
       []
-      [ Elements.view
+      [ NativeUi.Elements.view
         []
-        [ Elements.view [ ]
+        [ NativeUi.Elements.view [ ]
           [ Task.View.TaskEntry.taskEntry taskEntry
           , TaskList.View.view control.visibility taskList
           , Control.View.view control.visibility taskList

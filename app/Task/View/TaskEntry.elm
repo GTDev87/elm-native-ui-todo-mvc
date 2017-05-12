@@ -33,23 +33,8 @@ taskEntry taskEntry =
         ]
       , Ui.property "value" (Encode.string taskEntry.description)
       , Ui.property "placeholder" (Encode.string "What needs to be done?")
-      --, Events.constantMsgEvent "onChangeText" (Json.map (MsgForTaskEntry << Update))
       , Ui.on "onChangeText" (Decode.map (Todo.Msg.MsgForTaskEntry << Task.Msg.Update) Decode.string)
       , Ui.on "onSubmitEditing" (Decode.succeed (Todo.Msg.MsgForTaskList <| TaskList.Msg.Add taskEntry.id taskEntry.description))
       ]
       []
     ]
-
-  --header [ id "header" ]
-  --  [ h1 [] [ text "todos" ]
-  --  , input
-  --    [ id "new-todo"
-  --    , placeholder "What needs to be done?"
-  --    , autofocus True
-  --    , value taskEntry.description
-  --    , name "newTodo"
-  --    , on "input" (Json.map (MsgForTaskEntry << Update) targetValue)
-  --    , onEnter NoOp (MsgForTaskList <| Add taskEntry.id taskEntry.description)
-  --    ]
-  --    []
-  --  ]

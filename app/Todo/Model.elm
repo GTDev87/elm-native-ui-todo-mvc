@@ -5,13 +5,11 @@ import TaskList.Model
 import Control.Model
 import Todo.Msg
 
-
 type alias Model =
   { taskEntry : Task.Model.Model
   , taskList : TaskList.Model.Model
   , control : Control.Model.Model
   }
-
 
 initialModel : Model
 initialModel =

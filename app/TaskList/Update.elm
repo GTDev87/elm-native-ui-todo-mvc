@@ -16,8 +16,8 @@ update msgFor taskList =
     Todo.Msg.MsgForTaskList msg ->
       updateTaskList msg taskList
 
-    --MsgForTask id msg ->
-    --  updateTask id msg taskList
+    Todo.Msg.MsgForTask id msg ->
+      updateTask id msg taskList
 
     _ ->
       taskList
@@ -32,8 +32,8 @@ updateTaskList msg taskList =
       else
         taskList ++ [ Task.Model.newTask id description ]
 
-    --TaskList.Msg.Delete id ->
-    --  List.filter (\t -> t.id /= id) taskList
+    TaskList.Msg.Delete id ->
+      List.filter (\t -> t.id /= id) taskList
 
     --TaskList.Msg.DeleteComplete ->
     --  List.filter (not << .completed) taskList

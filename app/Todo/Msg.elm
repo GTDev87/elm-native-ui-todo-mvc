@@ -8,5 +8,5 @@ type Msg
   = NoOp
   | MsgForTaskEntry Task.Msg.Msg
   | MsgForTaskList TaskList.Msg.Msg
-  --| MsgForTask Int Task.Msg.Msg
+  | MsgForTask Int Task.Msg.Msg
   | MsgForControl Control.Msg.Msg

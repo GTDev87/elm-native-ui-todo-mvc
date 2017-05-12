@@ -12,8 +12,8 @@ update msgFor task =
     Todo.Msg.MsgForTaskEntry msg ->
       updateTask msg task
 
-    --MsgForTask _ msg ->
-    --  updateTask msg task
+    Todo.Msg.MsgForTask _ msg ->
+      updateTask msg task
 
     Todo.Msg.MsgForTaskList (TaskList.Msg.Add id _) ->
       Task.Model.newTask (id + 1) ""
@@ -24,8 +24,8 @@ update msgFor task =
 updateTask : Task.Msg.Msg -> Task.Model.Model -> Task.Model.Model
 updateTask msg model =
   case msg of
-    --Check isCompleted ->
-    --  { model | completed = isCompleted }
+    Task.Msg.Check isCompleted ->
+      { model | completed = isCompleted }
 
     --Editing isEditing ->
     --  { model | editing = isEditing }

@@ -7,10 +7,6 @@ import TaskList.Model
 import Task.View
 import Todo.Msg
 
---import Html exposing (..)
---import Html.Attributes exposing (..)
---import Html.Lazy exposing (lazy, lazy2)
-
 --import Todo.Model exposing (Model)
 
 --import TaskEntry.View as TaskEntryView
