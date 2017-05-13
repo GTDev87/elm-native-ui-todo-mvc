@@ -1,9 +1,11 @@
 module Task.View exposing (..)
 
-import NativeUi.Elements as Elements exposing (..)
 import NativeUi
+import NativeUi.Elements
+import NativeUi.Properties
 import NativeUi.Events
-import NativeUi.Style as Style
+import NativeUi.Image
+import NativeUi.Style
 import SwipeoutView.SwipeoutView
 --import TaskList.Model as TaskList
 
@@ -54,8 +56,8 @@ view todo =
   --  ]
 
   let
-    viewDisabledStyles = if todo.completed then [ Style.opacity 0.5 ] else []
-    labelCompletedStyling = if todo.completed then [ Style.textDecorationLine "line-through" ] else []
+    viewDisabledStyles = if todo.completed then [ NativeUi.Style.opacity 0.5 ] else []
+    labelCompletedStyling = if todo.completed then [ NativeUi.Style.textDecorationLine "line-through" ] else []
     --swipeoutBtns = [{
     --  text: 'Delete',
     --  backgroundColor: 'red',
@@ -67,9 +69,10 @@ view todo =
 
   in
     SwipeoutView.SwipeoutView.view
-      [
-        SwipeoutView.SwipeoutView.right
+      [ SwipeoutView.SwipeoutView.backgroundColor "transparent"
+      , SwipeoutView.SwipeoutView.right
           [ SwipeoutView.SwipeoutView.stringProp "text" "delete"
+          , SwipeoutView.SwipeoutView.stringProp "backgroundColor" "red"
           ]
       , SwipeoutView.SwipeoutView.onRightSwipe (Todo.Msg.MsgForTaskList <| TaskList.Msg.Delete todo.id)
 
@@ -77,42 +80,54 @@ view todo =
 
           --, Maybe.map (stringDeclaration "rotate") options.rotate
       ]
-      [ Elements.touchableHighlight
+      [ NativeUi.Elements.touchableOpacity
         [ NativeUi.Events.onPress (Todo.Msg.MsgForTask todo.id <| Task.Msg.Check (not todo.completed))
-        , NativeUi.Events.onLongPress (Todo.Msg.MsgForTaskList <| TaskList.Msg.Delete todo.id)
+        , NativeUi.Properties.underlayColor "transparent"
         ]
-        [ Elements.view
-          [ NativeUi.style
-            [ Style.borderBottomWidth 1
-            , Style.borderBottomColor "#ededed"
-            , Style.flexDirection "row"
-            , Style.paddingTop 15
-            , Style.paddingRight 60
-            ]
+        [ NativeUi.Elements.view
+          [ NativeUi.style -- item
+            ( [ NativeUi.Style.borderBottomWidth 1
+              , NativeUi.Style.borderBottomColor "#ededed"
+              , NativeUi.Style.flexDirection "row"
+              , NativeUi.Style.paddingTop 15
+              , NativeUi.Style.paddingRight 60
+              ] ++ viewDisabledStyles
+            )
           ]
-          [
-            Elements.view
+          [ NativeUi.Elements.image
             [ NativeUi.style
-              [ Style.flex 1
-              , Style.flexDirection "column"
-              , Style.alignItems "flex-start"
+              [ NativeUi.Style.marginLeft 10
+              , NativeUi.Style.marginTop 3
+              , NativeUi.Style.height 32 -- remove when ready
+              , NativeUi.Style.width 32 -- remove when ready
+              ]
+            , NativeUi.Image.source
+              { uri = "https://raw.githubusercontent.com/futurice/spiceprogram/master/assets/img/logo/chilicorn_no_text-128.png"
+              , cache = Just NativeUi.Image.ForceCache
+              }
+            ]
+            []
+          , NativeUi.Elements.view
+            [ NativeUi.style
+              [ NativeUi.Style.flex 1 -- labelWrapper
+              , NativeUi.Style.flexDirection "column"
+              , NativeUi.Style.alignItems "flex-start"
               ]
             ]
-            [ Elements.text
+            [ NativeUi.Elements.text
               [ NativeUi.style
-                (
-                  [ Style.fontSize 24
-                  , Style.paddingBottom 15
-                  , Style.paddingTop 1
-                  , Style.marginLeft 10
-                  ] ++ viewDisabledStyles ++ labelCompletedStyling
+                ( [ NativeUi.Style.fontSize 24
+                  , NativeUi.Style.paddingBottom 15
+                  , NativeUi.Style.paddingTop 1
+                  , NativeUi.Style.marginLeft 10
+                  ] ++ labelCompletedStyling
                 )
-              ]
+              ] 
               [ NativeUi.string todo.description ]
-            , Elements.text
+            , NativeUi.Elements.text
               []
               []
-            , Elements.textInput
+            , NativeUi.Elements.textInput
               []
               []
             ]

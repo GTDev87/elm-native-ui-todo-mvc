@@ -111,6 +111,10 @@ onRightSwipe : msg -> NativeUi.Property msg
 onRightSwipe msg =
   NativeUi.on "onRightSwipe" (Json.Decode.succeed msg) 
 
+backgroundColor : String -> NativeUi.Property msg
+backgroundColor val =
+  NativeUi.property "backgroundColor" (Json.Encode.string val)
+
 right : List Declaration -> NativeUi.Property msg
 right list =
   NativeUi.property
