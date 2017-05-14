@@ -6,7 +6,6 @@ import NativeUi as Ui exposing (Node)
 import TaskList.Model
 import Task.View
 import Todo.Msg
-import Task.Images.ImageLoad
 
 --import Todo.Model exposing (Model)
 

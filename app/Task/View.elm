@@ -20,7 +20,7 @@ import TaskList.Msg
 --import TaskEntry.View as TaskEntryView
 --import Control.View as ControlView
 import Task.Model
-import Task.Images.ImageLoad
+import Image.Image
 --import InfoFooter.View exposing (infoFooter)
 
 
@@ -103,7 +103,7 @@ view todo =
               , NativeUi.Style.height 32 -- remove when ready
               , NativeUi.Style.width 32 -- remove when ready
               ]
-            , NativeUi.Image.localSource (Task.Images.ImageLoad.imgSrc "checked")
+            , Image.Image.localSource (Image.Image.imgSrc "checked")
             ]
             []
           , NativeUi.Elements.view
