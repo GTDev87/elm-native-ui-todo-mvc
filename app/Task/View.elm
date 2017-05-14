@@ -20,6 +20,7 @@ import TaskList.Msg
 --import TaskEntry.View as TaskEntryView
 --import Control.View as ControlView
 import Task.Model
+import Task.Images.ImageLoad
 --import InfoFooter.View exposing (infoFooter)
 
 
@@ -91,7 +92,8 @@ view todo =
               , NativeUi.Style.flexDirection "row"
               , NativeUi.Style.paddingTop 15
               , NativeUi.Style.paddingRight 60
-              ] ++ viewDisabledStyles
+              ]
+              ++ viewDisabledStyles
             )
           ]
           [ NativeUi.Elements.image
@@ -101,10 +103,7 @@ view todo =
               , NativeUi.Style.height 32 -- remove when ready
               , NativeUi.Style.width 32 -- remove when ready
               ]
-            , NativeUi.Image.source
-              { uri = "https://raw.githubusercontent.com/futurice/spiceprogram/master/assets/img/logo/chilicorn_no_text-128.png"
-              , cache = Just NativeUi.Image.ForceCache
-              }
+            , NativeUi.Image.localSource (Task.Images.ImageLoad.imgSrc "checked")
             ]
             []
           , NativeUi.Elements.view
@@ -120,7 +119,8 @@ view todo =
                   , NativeUi.Style.paddingBottom 15
                   , NativeUi.Style.paddingTop 1
                   , NativeUi.Style.marginLeft 10
-                  ] ++ labelCompletedStyling
+                  ]
+                  ++ labelCompletedStyling
                 )
               ] 
               [ NativeUi.string todo.description ]
