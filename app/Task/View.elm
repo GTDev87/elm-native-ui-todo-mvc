@@ -4,10 +4,10 @@ import NativeUi
 import NativeUi.Elements
 import NativeUi.Properties
 import NativeUi.Events
-import NativeUi.Image
 import NativeUi.Style
 import SwipeoutView.SwipeoutView
 --import TaskList.Model as TaskList
+
 
 --import Html exposing (..)
 --import Html.Attributes exposing (..)
@@ -59,15 +59,7 @@ view todo =
   let
     viewDisabledStyles = if todo.completed then [ NativeUi.Style.opacity 0.5 ] else []
     labelCompletedStyling = if todo.completed then [ NativeUi.Style.textDecorationLine "line-through" ] else []
-    --swipeoutBtns = [{
-    --  text: 'Delete',
-    --  backgroundColor: 'red',
-    --  onPress: () => {
-    --    const { todo } = this.props;
-    --    this.props.onDelete({ todo });
-    --  },
-    --}];
-
+    checkBox = Image.Image.imgSrc (if todo.completed then "checked" else "unchecked")
   in
     SwipeoutView.SwipeoutView.view
       [ SwipeoutView.SwipeoutView.backgroundColor "transparent"
@@ -103,7 +95,7 @@ view todo =
               , NativeUi.Style.height 32 -- remove when ready
               , NativeUi.Style.width 32 -- remove when ready
               ]
-            , Image.Image.localSource (Image.Image.imgSrc "checked")
+            , Image.Image.localSource checkBox
             ]
             []
           , NativeUi.Elements.view
