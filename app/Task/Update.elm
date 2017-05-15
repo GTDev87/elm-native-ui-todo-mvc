@@ -27,8 +27,8 @@ updateTask msg model =
     Task.Msg.Check isCompleted ->
       { model | completed = isCompleted }
 
-    --Editing isEditing ->
-    --  { model | editing = isEditing }
+    Task.Msg.Editing isEditing ->
+      { model | editing = isEditing }
 
     Task.Msg.Update description ->
       { model | description = description }

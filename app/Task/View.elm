@@ -6,6 +6,8 @@ import NativeUi.Properties
 import NativeUi.Events
 import NativeUi.Style
 import SwipeoutView.SwipeoutView
+import Json.Encode
+import Json.Decode
 --import TaskList.Model as TaskList
 
 
@@ -24,9 +26,45 @@ import Image.Image
 --import InfoFooter.View exposing (infoFooter)
 
 
+-- NEED TO WORK A LOT ON EDIT
+editingView : Task.Model.Model -> NativeUi.Node Todo.Msg.Msg
+editingView task =
+  NativeUi.Elements.view
+    []
+    [ NativeUi.Elements.textInput
+      [ NativeUi.style
+        [ NativeUi.Style.paddingLeft 15
+        , NativeUi.Style.height 60
+        , NativeUi.Style.borderWidth 1
+        , NativeUi.Style.borderColor "#ededed"
+        ]
+      , NativeUi.property "value" (Json.Encode.string task.description)
+      , NativeUi.property "placeholder" (Json.Encode.string "What needs to be done?")
+      , NativeUi.on "onChangeText" (Json.Decode.map (Todo.Msg.MsgForTask task.id << Task.Msg.Update) Json.Decode.string)
+      , NativeUi.on "onSubmitEditing" (Json.Decode.succeed (Todo.Msg.MsgForTask task.id <| Task.Msg.Editing False))
+      ]
+      []
+    ]
+
+textView : Task.Model.Model -> NativeUi.Node Todo.Msg.Msg
+textView task =
+  let
+    labelCompletedStyling = if task.completed then [ NativeUi.Style.textDecorationLine "line-through" ] else []
+  in
+    NativeUi.Elements.text
+      [ NativeUi.style
+        ( [ NativeUi.Style.fontSize 24
+          , NativeUi.Style.paddingBottom 15
+          , NativeUi.Style.paddingTop 1
+          , NativeUi.Style.marginLeft 10
+          ]
+          ++ labelCompletedStyling
+        )
+      ]
+      [ NativeUi.string task.description]
 
 view : Task.Model.Model -> NativeUi.Node Todo.Msg.Msg
-view todo =
+view task =
   --li [ classList [ ( "completed", todo.completed ), ( "editing", todo.editing ) ] ]
   --  [ div [ class "view" ]
   --    [ input
@@ -57,9 +95,10 @@ view todo =
   --  ]
 
   let
-    viewDisabledStyles = if todo.completed then [ NativeUi.Style.opacity 0.5 ] else []
-    labelCompletedStyling = if todo.completed then [ NativeUi.Style.textDecorationLine "line-through" ] else []
-    checkBox = Image.Image.imgSrc (if todo.completed then "checked" else "unchecked")
+    viewDisabledStyles = if task.completed then [ NativeUi.Style.opacity 0.5 ] else []
+    
+    checkBox = Image.Image.imgSrc (if task.completed then "checked" else "unchecked")
+    editView = if task.editing then editingView task else textView task
   in
     SwipeoutView.SwipeoutView.view
       [ SwipeoutView.SwipeoutView.backgroundColor "transparent"
@@ -67,14 +106,11 @@ view todo =
           [ SwipeoutView.SwipeoutView.stringProp "text" "delete"
           , SwipeoutView.SwipeoutView.stringProp "backgroundColor" "red"
           ]
-      , SwipeoutView.SwipeoutView.onRightSwipe (Todo.Msg.MsgForTaskList <| TaskList.Msg.Delete todo.id)
-
-
-
-          --, Maybe.map (stringDeclaration "rotate") options.rotate
+      , SwipeoutView.SwipeoutView.onRightSwipe (Todo.Msg.MsgForTaskList <| TaskList.Msg.Delete task.id)
       ]
       [ NativeUi.Elements.touchableOpacity
-        [ NativeUi.Events.onPress (Todo.Msg.MsgForTask todo.id <| Task.Msg.Check (not todo.completed))
+        [ NativeUi.Events.onPress (Todo.Msg.MsgForTask task.id <| Task.Msg.Check (not task.completed))
+        , NativeUi.Events.onLongPress (Todo.Msg.MsgForTask task.id <| Task.Msg.Editing (not task.editing))
         , NativeUi.Properties.underlayColor "transparent"
         ]
         [ NativeUi.Elements.view
@@ -105,24 +141,7 @@ view todo =
               , NativeUi.Style.alignItems "flex-start"
               ]
             ]
-            [ NativeUi.Elements.text
-              [ NativeUi.style
-                ( [ NativeUi.Style.fontSize 24
-                  , NativeUi.Style.paddingBottom 15
-                  , NativeUi.Style.paddingTop 1
-                  , NativeUi.Style.marginLeft 10
-                  ]
-                  ++ labelCompletedStyling
-                )
-              ] 
-              [ NativeUi.string todo.description ]
-            , NativeUi.Elements.text
-              []
-              []
-            , NativeUi.Elements.textInput
-              []
-              []
-            ]
+            [ editView ]
           ]
         ]
       ]
