@@ -115,6 +115,10 @@ backgroundColor : String -> NativeUi.Property msg
 backgroundColor val =
   NativeUi.property "backgroundColor" (Json.Encode.string val)
 
+autoClose : Bool -> NativeUi.Property msg
+autoClose val =
+  NativeUi.property "autoClose" (Json.Encode.bool val)
+
 right : List Declaration -> NativeUi.Property msg
 right list =
   NativeUi.property

@@ -35,15 +35,21 @@ view model =
 
     control =
       model.control
+
+    anyIsEditing =
+      List.any (\t -> t.editing) model.taskList
   in
     NativeUi.Elements.view
-    [ NativeUi.style [NativeUi.Style.flex 1] ]
+    [ NativeUi.style
+      [ NativeUi.Style.flex 1 ]
+    ]
     [ NativeUi.Elements.view
       []
       [ NativeUi.Elements.view
         []
-        [ NativeUi.Elements.view [ ]
-          [ Task.View.TaskEntry.taskEntry taskEntry
+        [ NativeUi.Elements.view
+          []
+          [ Task.View.TaskEntry.taskEntry (not anyIsEditing) taskEntry
           , TaskList.View.view control.visibility taskList
           , Control.View.view control.visibility taskList
           ]

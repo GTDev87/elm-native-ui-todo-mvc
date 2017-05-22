@@ -7,7 +7,7 @@ const _ohanhi$elm_native_ui$Native_ReactNativeSwipeoutView = function () {
       {...otherProps}
       right={firstRight && [{...firstRight, onPress: onRightSwipe}]}
       left={firstLeft && [{...firstLeft, onPress: onLeftSwipe}]}
-    />
+    />;
 
   return {
     view: SwipeoutViewWithSingleSwipe,

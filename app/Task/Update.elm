@@ -5,18 +5,23 @@ import Task.Msg
 import TaskList.Msg
 import Task.Model
 
-
-update : Todo.Msg.Msg -> Task.Model.Model -> Task.Model.Model
-update msgFor task =
+updateEntry : Todo.Msg.Msg -> Task.Model.Model -> Task.Model.Model
+updateEntry msgFor task =
   case msgFor of
     Todo.Msg.MsgForTaskEntry msg ->
       updateTask msg task
 
-    Todo.Msg.MsgForTask _ msg ->
-      updateTask msg task
-
     Todo.Msg.MsgForTaskList (TaskList.Msg.Add id _) ->
       Task.Model.newTask (id + 1) ""
+
+    _ ->
+      task
+
+update : Todo.Msg.Msg -> Task.Model.Model -> Task.Model.Model
+update msgFor task =
+  case msgFor of
+    Todo.Msg.MsgForTask _ msg ->
+      updateTask msg task
 
     _ ->
       task

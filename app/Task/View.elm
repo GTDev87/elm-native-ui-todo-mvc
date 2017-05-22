@@ -33,14 +33,20 @@ editingView task =
     []
     [ NativeUi.Elements.textInput
       [ NativeUi.style
-        [ NativeUi.Style.paddingLeft 15
+        [ NativeUi.Style.fontSize 24
+        , NativeUi.Style.paddingBottom 15
+        , NativeUi.Style.paddingTop 1
+        , NativeUi.Style.marginLeft 10
+        , NativeUi.Style.width 100
         , NativeUi.Style.height 60
-        , NativeUi.Style.borderWidth 1
-        , NativeUi.Style.borderColor "#ededed"
         ]
+      , NativeUi.property "autoCorrect" (Json.Encode.bool True)
+      , NativeUi.property "autoFocus" (Json.Encode.bool True)
       , NativeUi.property "value" (Json.Encode.string task.description)
-      , NativeUi.property "placeholder" (Json.Encode.string "What needs to be done?")
-      , NativeUi.on "onChangeText" (Json.Decode.map (Todo.Msg.MsgForTask task.id << Task.Msg.Update) Json.Decode.string)
+      --, NativeUi.property "placeholder" (Json.Encode.string "What needs to be done?")
+      , NativeUi.on "onChangeText" (Json.Decode.map (Todo.Msg.MsgForTask (Debug.log "task.id" task.id) << Task.Msg.Update) Json.Decode.string)
+      , NativeUi.on "onEndEditing" (Json.Decode.succeed (Todo.Msg.MsgForTask task.id <| Task.Msg.Editing False))
+      , NativeUi.on "onBlur" (Json.Decode.succeed (Todo.Msg.MsgForTask task.id <| Task.Msg.Editing False))
       , NativeUi.on "onSubmitEditing" (Json.Decode.succeed (Todo.Msg.MsgForTask task.id <| Task.Msg.Editing False))
       ]
       []
@@ -96,7 +102,6 @@ view task =
 
   let
     viewDisabledStyles = if task.completed then [ NativeUi.Style.opacity 0.5 ] else []
-    
     checkBox = Image.Image.imgSrc (if task.completed then "checked" else "unchecked")
     editView = if task.editing then editingView task else textView task
   in
@@ -107,6 +112,7 @@ view task =
           , SwipeoutView.SwipeoutView.stringProp "backgroundColor" "red"
           ]
       , SwipeoutView.SwipeoutView.onRightSwipe (Todo.Msg.MsgForTaskList <| TaskList.Msg.Delete task.id)
+      , SwipeoutView.SwipeoutView.autoClose True
       ]
       [ NativeUi.Elements.touchableOpacity
         [ NativeUi.Events.onPress (Todo.Msg.MsgForTask task.id <| Task.Msg.Check (not task.completed))
