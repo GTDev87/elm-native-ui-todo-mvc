@@ -49,9 +49,11 @@ view model =
         []
         [ NativeUi.Elements.view
           []
-          [ Task.View.TaskEntry.taskEntry (not anyIsEditing) taskEntry
-          , TaskList.View.view control.visibility taskList
-          , Control.View.view control.visibility taskList
+          [ Control.View.view control.visibility
+            taskList
+            [ Task.View.TaskEntry.taskEntry (not anyIsEditing) taskEntry
+            , TaskList.View.view control.visibility taskList
+            ]
           ]
         , infoFooter
         ]

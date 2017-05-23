@@ -9,8 +9,11 @@ module Control.View exposing (..)
 --import Model.Task as Task
 
 
-import NativeUi.Elements as Elements exposing (..)
-import NativeUi as Ui exposing (Node)
+import NativeApi.Platform
+import NativeUi
+import NativeUi.Elements
+import Control.View.NavigationIOS
+import Control.View.NavigationAndroid
 
 import Task.Model
 import Todo.Msg
@@ -64,8 +67,10 @@ import Todo.Msg
 --        [ text ("Clear completed (" ++ toString tasksCompleted ++ ")") ]
 --      ]
 
-view : String -> List Task.Model.Model -> Node Todo.Msg.Msg
-view visibility tasks =
+
+
+view : String -> List Task.Model.Model -> List (NativeUi.Node Todo.Msg.Msg) -> NativeUi.Node Todo.Msg.Msg
+view visibility tasks children =
   let
     tasksCompleted =
       List.length (List.filter .completed tasks)
@@ -78,37 +83,42 @@ view visibility tasks =
         " item"
       else
         " items"
+
+    navigation =
+      if NativeApi.Platform.os == NativeApi.Platform.IOS then Control.View.NavigationIOS.view else Control.View.NavigationAndroid.view
   in
-    Elements.view
+    NativeUi.Elements.view
       [ 
       --  id "footer"
       --, hidden (List.isEmpty tasks)
       ]
-      [ Elements.view 
+      [ Control.View.NavigationIOS.view
+        children
+      , NativeUi.Elements.view 
         [
           --id "todo-count"
         ]
-        [ Elements.text [] [ Ui.string (toString tasksLeft) ]
-        , Elements.text [] [ Ui.string (item_ ++ " left")]
+        [ NativeUi.Elements.text [] [ NativeUi.string (toString tasksLeft) ]
+        , NativeUi.Elements.text [] [ NativeUi.string (item_ ++ " left")]
         ]
-      , Elements.view 
+      , NativeUi.Elements.view 
         [
           --id "filters"
         ]
         [ visibilitySwap "#/" "All" visibility
-        , Elements.text [] [Ui.string " "]
+        , NativeUi.Elements.text [] [NativeUi.string " "]
         , visibilitySwap "#/active" "Active" visibility
-        , Elements.text [] [Ui.string " "]
+        , NativeUi.Elements.text [] [NativeUi.string " "]
         , visibilitySwap "#/completed" "Completed" visibility
         ]
-      , Elements.text
+      , NativeUi.Elements.text
         [
         --  class "clear-completed"
         --, id "clear-completed"
         --, hidden (tasksCompleted == 0)
         --, onClick (MsgForTaskList DeleteComplete)
         ]
-        [ Ui.string ("Clear completed (" ++ toString tasksCompleted ++ ")") ]
+        [ NativeUi.string ("Clear completed (" ++ toString tasksCompleted ++ ")") ]
       ]
 
 
@@ -117,16 +127,16 @@ view visibility tasks =
 --  li [ onClick (MsgForControl <| ChangeVisibility visibility) ]
 --    [ a [ href uri, classList [ ( "selected", visibility == actualVisibility ) ] ] [ text visibility ] ]
 
-visibilitySwap : String -> String -> String -> Node Todo.Msg.Msg
+visibilitySwap : String -> String -> String -> NativeUi.Node Todo.Msg.Msg
 visibilitySwap uri visibility actualVisibility =
-  Elements.view 
+  NativeUi.Elements.view 
     [
       --onClick (MsgForControl <| ChangeVisibility visibility)
     ]
-    [ Elements.view 
+    [ NativeUi.Elements.view 
       [
       --href uri
       --, classList [ ( "selected", visibility == actualVisibility ) ]
       ]
-      [ Elements.text [] [Ui.string visibility] ]
+      [ NativeUi.Elements.text [] [NativeUi.string visibility] ]
     ]
