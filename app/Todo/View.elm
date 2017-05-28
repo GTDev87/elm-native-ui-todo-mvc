@@ -3,6 +3,7 @@ module Todo.View exposing (..)
 import NativeApi.Platform
 import NativeUi
 import NativeUi.Elements
+import Native.NativeUi.Dimensions
 import NativeUi.Style
 
 import Todo.Msg
@@ -32,10 +33,15 @@ view model =
     isIos =
       NativeApi.Platform.os == NativeApi.Platform.IOS
 
+    platformStyles =
+      if isIos then NativeUi.Style.marginTop 20 else NativeUi.Style.marginTop 0
+
   in
     NativeUi.Elements.view
     [ NativeUi.style
-      [ NativeUi.Style.flex 1 ]
+      [ NativeUi.Style.flex 1
+      , platformStyles
+      ]
     ]
     [ Control.View.view
       taskList

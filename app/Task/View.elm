@@ -59,7 +59,7 @@ textView task =
   in
     NativeUi.Elements.text
       [ NativeUi.style
-        ( [ NativeUi.Style.fontSize 24
+        ( [ NativeUi.Style.fontSize 24 -- label
           , NativeUi.Style.paddingBottom 15
           , NativeUi.Style.paddingTop 1
           , NativeUi.Style.marginLeft 10
@@ -132,10 +132,8 @@ view task =
           ]
           [ NativeUi.Elements.image
             [ NativeUi.style
-              [ NativeUi.Style.marginLeft 10
+              [ NativeUi.Style.marginLeft 10 -- checkbox
               , NativeUi.Style.marginTop 3
-              , NativeUi.Style.height 32 -- remove when ready
-              , NativeUi.Style.width 32 -- remove when ready
               ]
             , Image.Image.localSource checkBox
             ]

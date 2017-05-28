@@ -1,11 +1,12 @@
 module TaskList.View exposing (..)
 
-import NativeUi.Elements as Elements exposing (..)
-import NativeUi as Ui exposing (Node)
+import NativeUi.Elements
+import NativeUi
 
 import TaskList.Model
 import Task.View
 import Todo.Msg
+import NativeUi.Style
 
 --import Todo.Model exposing (Model)
 
@@ -13,7 +14,7 @@ import Todo.Msg
 --import Control.View as ControlView
 --import InfoFooter.View exposing (infoFooter)
 
-view : String -> TaskList.Model.Model -> Node Todo.Msg.Msg
+view : String -> TaskList.Model.Model -> NativeUi.Node Todo.Msg.Msg
 view visibility tasks =
   let
     isVisible todo =
@@ -53,11 +54,9 @@ view visibility tasks =
     --  , ul [ id "todo-list" ]
     --    (List.map todoItem (List.filter isVisible tasks))
     --  ]
-    Elements.view
+    NativeUi.Elements.view
       []
-      [ Elements.touchableHighlight [] [Elements.view [] []]
-      , Elements.view
+      [ NativeUi.Elements.scrollView
         []
         (List.map Task.View.view (List.filter isVisible tasks))
-      , Elements.text [] [ Ui.string "Mark all as complete" ]
       ]
