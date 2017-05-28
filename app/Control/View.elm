@@ -87,38 +87,42 @@ view visibility tasks children =
     navigation =
       if NativeApi.Platform.os == NativeApi.Platform.IOS then Control.View.NavigationIOS.view else Control.View.NavigationAndroid.view
   in
-    NativeUi.Elements.view
-      [ 
-      --  id "footer"
-      --, hidden (List.isEmpty tasks)
-      ]
-      [ Control.View.NavigationIOS.view
-        children
-      , NativeUi.Elements.view 
-        [
-          --id "todo-count"
+    Control.View.NavigationIOS.view
+      []
+      [ NativeUi.Elements.view
+        [ 
+        --  id "footer"
+        --, hidden (List.isEmpty tasks)
         ]
-        [ NativeUi.Elements.text [] [ NativeUi.string (toString tasksLeft) ]
-        , NativeUi.Elements.text [] [ NativeUi.string (item_ ++ " left")]
+        [ NativeUi.Elements.view
+          []
+          children
+        , NativeUi.Elements.view 
+          [
+            --id "todo-count"
+          ]
+          [ NativeUi.Elements.text [] [ NativeUi.string (toString tasksLeft) ]
+          , NativeUi.Elements.text [] [ NativeUi.string (item_ ++ " left")]
+          ]
+        , NativeUi.Elements.view 
+          [
+            --id "filters"
+          ]
+          [ visibilitySwap "#/" "All" visibility
+          , NativeUi.Elements.text [] [NativeUi.string " "]
+          , visibilitySwap "#/active" "Active" visibility
+          , NativeUi.Elements.text [] [NativeUi.string " "]
+          , visibilitySwap "#/completed" "Completed" visibility
+          ]
+        , NativeUi.Elements.text
+          [
+          --  class "clear-completed"
+          --, id "clear-completed"
+          --, hidden (tasksCompleted == 0)
+          --, onClick (MsgForTaskList DeleteComplete)
+          ]
+          [ NativeUi.string ("Clear completed (" ++ toString tasksCompleted ++ ")") ]
         ]
-      , NativeUi.Elements.view 
-        [
-          --id "filters"
-        ]
-        [ visibilitySwap "#/" "All" visibility
-        , NativeUi.Elements.text [] [NativeUi.string " "]
-        , visibilitySwap "#/active" "Active" visibility
-        , NativeUi.Elements.text [] [NativeUi.string " "]
-        , visibilitySwap "#/completed" "Completed" visibility
-        ]
-      , NativeUi.Elements.text
-        [
-        --  class "clear-completed"
-        --, id "clear-completed"
-        --, hidden (tasksCompleted == 0)
-        --, onClick (MsgForTaskList DeleteComplete)
-        ]
-        [ NativeUi.string ("Clear completed (" ++ toString tasksCompleted ++ ")") ]
       ]
 
 
