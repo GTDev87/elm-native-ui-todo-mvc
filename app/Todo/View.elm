@@ -7,22 +7,12 @@ import NativeUi.Style
 
 import Todo.Msg
 import Todo.Model
-
 import Task.View.TaskEntry
+
 import TaskList.View
 import Control.View
 
 --import TaskEntry.View as TaskEntryView
---import InfoFooter.View exposing (infoFooter)
-
-
-infoFooter : NativeUi.Node Todo.Msg.Msg
-infoFooter =
-  NativeUi.Elements.view []
-    [ NativeUi.Elements.text [] [ NativeUi.string "Double-click to edit a todo" ]
-    , NativeUi.Elements.text [] [ NativeUi.string "Written by Evan Czaplicki" ]
-    , NativeUi.Elements.text [] [ NativeUi.string "Part of TodoMVC" ]
-    ]
 
 view : Todo.Model.Model -> NativeUi.Node Todo.Msg.Msg
 view model =
@@ -38,6 +28,10 @@ view model =
 
     anyIsEditing =
       List.any (\t -> t.editing) model.taskList
+
+    isIos =
+      NativeApi.Platform.os == NativeApi.Platform.IOS
+
   in
     NativeUi.Elements.view
     [ NativeUi.style
@@ -49,13 +43,12 @@ view model =
         []
         [ NativeUi.Elements.view
           []
-          [ Control.View.view control.visibility
+          [ Control.View.view
             taskList
-            [ Task.View.TaskEntry.taskEntry (not anyIsEditing) taskEntry
-            , TaskList.View.view control.visibility taskList
-            ]
+            control.visibility
+            (Task.View.TaskEntry.taskEntry (not anyIsEditing) taskEntry)
+            [ TaskList.View.view control.visibility taskList ]
           ]
-        , infoFooter
         ]
       ]
     ]
