@@ -37,20 +37,11 @@ view model =
     [ NativeUi.style
       [ NativeUi.Style.flex 1 ]
     ]
-    [ NativeUi.Elements.view
-      []
-      [ NativeUi.Elements.view
-        []
-        [ NativeUi.Elements.view
-          []
-          [ Control.View.view
-            taskList
-            control.visibility
-            (Task.View.TaskEntry.taskEntry (not anyIsEditing) taskEntry)
-            [ TaskList.View.view control.visibility taskList ]
-          ]
-        ]
-      ]
+    [ Control.View.view
+      taskList
+      control.visibility
+      (Task.View.TaskEntry.taskEntry (not anyIsEditing) taskEntry)
+      [ TaskList.View.view control.visibility taskList ]
     ]
 
 
@@ -65,6 +56,5 @@ view model =
     --      lazy2 taskList control.visibility taskList
     --    --, lazy2 ControlsView.controls control.visibility taskList
     --    ]
-    --  --, infoFooter
     --  ]
     
