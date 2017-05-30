@@ -8,25 +8,13 @@ import NativeUi.Style
 import SwipeoutView.SwipeoutView
 import Json.Encode
 import Json.Decode
---import TaskList.Model as TaskList
-
-
---import Html exposing (..)
---import Html.Attributes exposing (..)
---import Html.Lazy exposing (lazy, lazy2)
 import Todo.Msg
 import Task.Msg
 import TaskList.Msg
---import Todo.Model exposing (Model)
-
---import TaskEntry.View as TaskEntryView
---import Control.View as ControlView
 import Task.Model
 import Image.Image
---import InfoFooter.View exposing (infoFooter)
 
 
--- NEED TO WORK A LOT ON EDIT
 editingView : Task.Model.Model -> NativeUi.Node Todo.Msg.Msg
 editingView task =
   NativeUi.Elements.view
@@ -71,35 +59,6 @@ textView task =
 
 view : Task.Model.Model -> NativeUi.Node Todo.Msg.Msg
 view task =
-  --li [ classList [ ( "completed", todo.completed ), ( "editing", todo.editing ) ] ]
-  --  [ div [ class "view" ]
-  --    [ input
-  --      [ class "toggle"
-  --      , type' "checkbox"
-  --      , checked todo.completed
-  --      , onClick (MsgForTask todo.id <| Check (not todo.completed))
-  --      ]
-  --      []
-  --    , label [ onDoubleClick (MsgForTask todo.id <| Editing True) ]
-  --      [ text todo.description ]
-  --    , button
-  --      [ class "destroy"
-  --      , onClick (MsgForTaskList <| Delete todo.id)
-  --      ]
-  --      []
-  --    ]
-  --  , input
-  --    [ class "edit"
-  --    , value todo.description
-  --    , name "title"
-  --    , id ("todo-" ++ toString todo.id)
-  --    , on "input" (Json.map (MsgForTask todo.id << Update) targetValue)
-  --    , onBlur (MsgForTask todo.id <| Editing False)
-  --    , onEnter NoOp (MsgForTask todo.id <| Editing False)
-  --    ]
-  --    []
-  --  ]
-
   let
     viewDisabledStyles = if task.completed then [ NativeUi.Style.opacity 0.5 ] else []
     checkBox = Image.Image.imgSrc (if task.completed then "checked" else "unchecked")

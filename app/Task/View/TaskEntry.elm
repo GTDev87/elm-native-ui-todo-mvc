@@ -1,17 +1,9 @@
 module Task.View.TaskEntry exposing (..)
+
 import NativeUi.Elements
 import NativeUi.Style
 import NativeUi.Events
-
---import Html exposing (..)
---import Html.Attributes exposing (..)
---import Html.Events exposing (..)
 import NativeUi
-
-
---import Msg.TaskList exposing (..)
---import Msg.Task exposing (..)
---import View.Events exposing (onEnter)
 import Task.Model
 import TaskList.Msg
 import Task.Msg

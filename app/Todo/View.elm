@@ -49,18 +49,3 @@ view model =
       (Task.View.TaskEntry.taskEntry (not anyIsEditing) taskEntry)
       [ TaskList.View.view control.visibility taskList ]
     ]
-
-
-    --div
-    --  [ class "todomvc-wrapper"
-    --  , style [ ( "visibility", "hidden" ) ]
-    --  ]
-    --  [ section [ id "todoapp" ]
-    --    [ 
-    --    --lazy TaskEntryView.taskEntry taskEntry
-    --    --, 
-    --      lazy2 taskList control.visibility taskList
-    --    --, lazy2 ControlsView.controls control.visibility taskList
-    --    ]
-    --  ]
-    
