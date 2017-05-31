@@ -1,33 +1,10 @@
 module Task.Update exposing (..)
 
-import Todo.Msg
 import Task.Msg
-import TaskList.Msg
 import Task.Model
 
-updateEntry : Todo.Msg.Msg -> Task.Model.Model -> Task.Model.Model
-updateEntry msgFor task =
-  case msgFor of
-    Todo.Msg.MsgForTaskEntry msg ->
-      updateTask msg task
-
-    Todo.Msg.MsgForTaskList (TaskList.Msg.Add id _) ->
-      Task.Model.newTask (id + 1) ""
-
-    _ ->
-      task
-
-update : Todo.Msg.Msg -> Task.Model.Model -> Task.Model.Model
-update msgFor task =
-  case msgFor of
-    Todo.Msg.MsgForTask _ msg ->
-      updateTask msg task
-
-    _ ->
-      task
-
-updateTask : Task.Msg.Msg -> Task.Model.Model -> Task.Model.Model
-updateTask msg model =
+update : Task.Msg.Msg -> Task.Model.Model -> Task.Model.Model
+update msg model =
   case msg of
     Task.Msg.Check isCompleted ->
       { model | completed = isCompleted }

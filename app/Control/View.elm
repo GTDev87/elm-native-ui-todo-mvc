@@ -27,7 +27,7 @@ import Todo.Msg
 
 --import TaskEntry.View as TaskEntryView
 
-
+-- use props
 
 --controls : String -> List Task.Model -> Html Main.Msg
 --controls visibility tasks =

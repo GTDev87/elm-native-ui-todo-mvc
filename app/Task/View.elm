@@ -70,7 +70,7 @@ view task =
           [ SwipeoutView.SwipeoutView.stringProp "text" "delete"
           , SwipeoutView.SwipeoutView.stringProp "backgroundColor" "red"
           ]
-      , SwipeoutView.SwipeoutView.onRightSwipe (Todo.Msg.MsgForTaskList <| TaskList.Msg.Delete task.id)
+      , SwipeoutView.SwipeoutView.onRightSwipe (TaskList.Msg.Delete task.id |> Todo.Msg.MsgForTaskList)
       , SwipeoutView.SwipeoutView.autoClose True
       ]
       [ NativeUi.Elements.touchableOpacity
