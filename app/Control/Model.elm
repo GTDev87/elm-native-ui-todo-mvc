@@ -1,10 +1,12 @@
 module Control.Model exposing (..)
 
+
 type alias Model =
-  { visibility : String
-  }
+    { visibility : String
+    }
+
 
 model : Model
 model =
-  { visibility = "All"
-  }
+    { visibility = "All"
+    }
