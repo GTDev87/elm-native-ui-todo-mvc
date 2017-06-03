@@ -42,8 +42,9 @@ view model =
                 ]
             ]
             [ Control.View.view
-                taskList
+                control
                 { visibility = control.visibility
+                , taskList = taskList
                 , todoEntryNode =
                     Task.View.TaskEntry.taskEntry taskEntry { shouldEdit = not anyIsEditing }
                 }

@@ -16,6 +16,8 @@ import Control.View.NavigationAndroid
 import NativeUi.Style
 import Task.Model
 import Todo.Msg
+import Control.Model
+import Control.View.Navigation
 
 
 --import Html exposing (..)
@@ -66,12 +68,20 @@ import Todo.Msg
 type alias Props =
     { visibility : String
     , todoEntryNode : NativeUi.Node Todo.Msg.Msg
+    , taskList : List Task.Model.Model
     }
 
 
-view : List Task.Model.Model -> Props -> List (NativeUi.Node Todo.Msg.Msg) -> NativeUi.Node Todo.Msg.Msg
-view tasks props children =
+
+--Image.Image.imgSrc "all"
+
+
+view : Control.Model.Model -> Props -> List (NativeUi.Node Todo.Msg.Msg) -> NativeUi.Node Todo.Msg.Msg
+view model props children =
     let
+        tasks =
+            props.taskList
+
         tasksCompleted =
             List.length (List.filter .completed tasks)
 
@@ -102,9 +112,8 @@ view tasks props children =
               else
                 NativeUi.Elements.view [] []
             , navigation
-                [ NativeUi.style
-                    [ NativeUi.Style.flex 1 ]
-                ]
+                model
+                { tabTypes = Control.View.Navigation.tabTypes }
                 children
 
             --, NativeUi.Elements.view

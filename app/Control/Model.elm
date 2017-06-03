@@ -8,5 +8,5 @@ type alias Model =
 
 model : Model
 model =
-    { visibility = "All"
+    { visibility = "all"
     }
