@@ -1,5 +1,7 @@
 module Control.Msg exposing (..)
 
+import Control.Model
+
 
 type Msg
-    = ChangeVisibility String
+    = ChangeVisibility Control.Model.VisibilityType

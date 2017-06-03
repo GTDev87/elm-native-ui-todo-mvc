@@ -66,7 +66,7 @@ import Control.View.Navigation
 
 
 type alias Props =
-    { visibility : String
+    { visibility : Control.Model.VisibilityType
     , todoEntryNode : NativeUi.Node Todo.Msg.Msg
     , taskList : List Task.Model.Model
     }

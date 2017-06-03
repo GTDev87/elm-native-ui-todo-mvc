@@ -3,6 +3,7 @@ module TaskList.View exposing (..)
 import NativeUi.Elements
 import NativeUi
 import TaskList.Model
+import Control.Model
 import Task.View
 import Todo.Msg
 
@@ -14,7 +15,7 @@ import Todo.Msg
 
 
 type alias Props =
-    { visibility : String
+    { visibility : Control.Model.VisibilityType
     }
 
 
@@ -23,13 +24,13 @@ view tasks props =
     let
         isVisible todo =
             case props.visibility of
-                "Completed" ->
+                Control.Model.Completed ->
                     todo.completed
 
-                "Active" ->
+                Control.Model.Active ->
                     not todo.completed
 
-                _ ->
+                Control.Model.All ->
                     True
 
         allCompleted =

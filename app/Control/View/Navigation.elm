@@ -1,8 +1,9 @@
 module Control.View.Navigation exposing (..)
 
+import Control.Model
 
 type alias TabType =
-    { visibility : String
+    { visibility : Control.Model.VisibilityType
     , icon : String
     , title : String
     }
@@ -15,15 +16,15 @@ type alias Props =
 
 tabTypes : List TabType
 tabTypes =
-    [ { visibility = "all"
+    [ { visibility = Control.Model.All
       , icon = "all"
       , title = "All"
       }
-    , { visibility = "active"
+    , { visibility = Control.Model.Active
       , icon = "active"
       , title = "Active"
       }
-    , { visibility = "completed"
+    , { visibility = Control.Model.Completed
       , icon = "completed"
       , title = "Completed"
       }

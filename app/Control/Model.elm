@@ -1,12 +1,16 @@
 module Control.Model exposing (..)
 
+type VisibilityType
+    = All
+    | Active
+    | Completed
 
 type alias Model =
-    { visibility : String
+    { visibility : VisibilityType
     }
 
 
 model : Model
 model =
-    { visibility = "all"
+    { visibility = All
     }

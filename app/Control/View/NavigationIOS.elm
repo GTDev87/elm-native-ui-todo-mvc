@@ -14,14 +14,6 @@ tabBarNode : List (NativeUi.Property msg) -> List (NativeUi.Node msg) -> NativeU
 tabBarNode =
     NativeUi.customNode "TabBarItemIOS" Native.TabBarItemIOS.view
 
-
-type alias TabType =
-    { visibility : String
-    , icon : String
-    , title : String
-    }
-
-
 tabBarItem : Control.Model.Model -> Control.View.Navigation.TabType -> List (NativeUi.Node Todo.Msg.Msg) -> NativeUi.Node Todo.Msg.Msg
 tabBarItem model tabType children =
     let
@@ -32,7 +24,7 @@ tabBarItem model tabType children =
             [ NativeUi.property "selected" (Json.Encode.bool selected)
             , NativeUi.property "systemIcon" (Json.Encode.string "recents") -- tabType.icon
             , NativeUi.property "title" (Json.Encode.string tabType.title)
-            , NativeUi.property "key" (Json.Encode.string tabType.visibility)
+            , NativeUi.property "key" (Json.Encode.string tabType.title)
             ]
             [ NativeUi.Elements.view
                 [ NativeUi.style
