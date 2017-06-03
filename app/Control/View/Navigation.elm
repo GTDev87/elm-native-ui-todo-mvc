@@ -2,6 +2,7 @@ module Control.View.Navigation exposing (..)
 
 import Control.Model
 
+
 type alias TabType =
     { visibility : Control.Model.VisibilityType
     , icon : String

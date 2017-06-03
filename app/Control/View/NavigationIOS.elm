@@ -8,11 +8,19 @@ import Todo.Msg
 import Json.Encode
 import Control.View.Navigation
 import Control.Model
+import Image.Image
 
 
 tabBarNode : List (NativeUi.Property msg) -> List (NativeUi.Node msg) -> NativeUi.Node msg
 tabBarNode =
     NativeUi.customNode "TabBarItemIOS" Native.TabBarItemIOS.view
+
+
+{-| -}
+icon : Int -> NativeUi.Property msg
+icon val =
+    NativeUi.property "icon" (Json.Encode.int val)
+
 
 tabBarItem : Control.Model.Model -> Control.View.Navigation.TabType -> List (NativeUi.Node Todo.Msg.Msg) -> NativeUi.Node Todo.Msg.Msg
 tabBarItem model tabType children =
@@ -22,7 +30,7 @@ tabBarItem model tabType children =
     in
         tabBarNode
             [ NativeUi.property "selected" (Json.Encode.bool selected)
-            , NativeUi.property "systemIcon" (Json.Encode.string "recents") -- tabType.icon
+            , icon (Image.Image.imgSrc tabType.icon)
             , NativeUi.property "title" (Json.Encode.string tabType.title)
             , NativeUi.property "key" (Json.Encode.string tabType.title)
             ]
