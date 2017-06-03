@@ -8,12 +8,6 @@ import Task.View
 import Todo.Msg
 
 
---import Todo.Model exposing (Model)
---import TaskEntry.View as TaskEntryView
---import Control.View as ControlView
---import InfoFooter.View exposing (infoFooter)
-
-
 type alias Props =
     { visibility : Control.Model.VisibilityType
     }
