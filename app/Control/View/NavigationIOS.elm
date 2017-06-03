@@ -3,8 +3,10 @@ module Control.View.NavigationIOS exposing (..)
 import Native.TabBarItemIOS
 import NativeUi.Elements
 import NativeUi.Style
+import NativeUi.Events
 import NativeUi
 import Todo.Msg
+import Control.Msg
 import Json.Encode
 import Control.View.Navigation
 import Control.Model
@@ -33,6 +35,7 @@ tabBarItem model tabType children =
             , icon (Image.Image.imgSrc tabType.icon)
             , NativeUi.property "title" (Json.Encode.string tabType.title)
             , NativeUi.property "key" (Json.Encode.string tabType.title)
+            , NativeUi.Events.onPress (Todo.Msg.MsgForControl <| Control.Msg.ChangeVisibility tabType.visibility)
             ]
             [ NativeUi.Elements.view
                 [ NativeUi.style
