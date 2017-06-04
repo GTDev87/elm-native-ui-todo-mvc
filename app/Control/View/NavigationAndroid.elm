@@ -11,4 +11,11 @@ view : Control.Model.Model -> Control.View.Navigation.Props -> List (NativeUi.No
 view model props children =
     NativeUi.Elements.view
         []
-        children
+        [ NativeUi.Elements.view
+            []
+            [ props.todoEntryNode
+            ]
+        , NativeUi.Elements.view
+            []
+            children
+        ]

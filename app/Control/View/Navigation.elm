@@ -1,6 +1,8 @@
 module Control.View.Navigation exposing (..)
 
 import Control.Model
+import NativeUi
+import Todo.Msg
 
 
 type alias TabType =
@@ -12,6 +14,7 @@ type alias TabType =
 
 type alias Props =
     { tabTypes : List TabType
+    , todoEntryNode : NativeUi.Node Todo.Msg.Msg
     }
 
 

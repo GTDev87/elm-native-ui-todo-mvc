@@ -56,6 +56,8 @@ view model props children =
                 NativeUi.Elements.view [] []
             , navigation
                 model
-                { tabTypes = Control.View.Navigation.tabTypes }
+                { tabTypes = Control.View.Navigation.tabTypes
+                , todoEntryNode = props.todoEntryNode
+                }
                 children
             ]
