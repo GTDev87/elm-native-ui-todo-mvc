@@ -30,9 +30,7 @@ editingView task =
                 ]
             , NativeUi.property "autoCorrect" (Json.Encode.bool True)
             , NativeUi.property "autoFocus" (Json.Encode.bool True)
-            , NativeUi.property "value" (Json.Encode.string task.description)
-
-            --, NativeUi.property "placeholder" (Json.Encode.string "What needs to be done?")
+            , NativeUi.property "value" (Json.Encode.string task.description) -- maybe get rid of this... but leave an inital value somehow
             , NativeUi.on "onChangeText" (Json.Decode.map (Todo.Msg.MsgForTask (Debug.log "task.id" task.id) << Task.Msg.Update) Json.Decode.string)
             , NativeUi.on "onEndEditing" (Json.Decode.succeed (Todo.Msg.MsgForTask task.id <| Task.Msg.Editing False))
             , NativeUi.on "onBlur" (Json.Decode.succeed (Todo.Msg.MsgForTask task.id <| Task.Msg.Editing False))

@@ -55,5 +55,5 @@ view model props children =
         [ NativeUi.node
             "TabBarIOS"
             []
-            (List.map (\tabType -> tabBarItem (Debug.log "model" model) tabType children) props.tabTypes)
+            (List.map (\tabType -> tabBarItem model tabType children) props.tabTypes)
         ]
