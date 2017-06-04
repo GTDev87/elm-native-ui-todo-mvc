@@ -11,6 +11,7 @@ import Control.Model
 import Control.Msg
 import Json.Encode
 import Image.Image
+import Native.LayoutToolbarAndroid
 
 
 navigationTab : Control.Model.Model -> Control.View.Navigation.TabType -> NativeUi.Node Todo.Msg.Msg
@@ -70,28 +71,41 @@ renderNavigation model props _ =
         )
 
 
+navIcon : Int -> NativeUi.Property msg
+navIcon val =
+    NativeUi.property "navIcon" (Json.Encode.int val)
+
+
 view : Control.Model.Model -> Control.View.Navigation.Props -> List (NativeUi.Node Todo.Msg.Msg) -> NativeUi.Node Todo.Msg.Msg
 view model props children =
-    NativeUi.node
+    NativeUi.customNode
         "DrawerLayoutAndroid"
+        Native.LayoutToolbarAndroid.drawerLayoutAndroidView
         [ NativeUi.property "drawerWidth" (Json.Encode.float 300)
         , NativeUi.renderProperty "renderNavigationView" (renderNavigation model props)
         ]
         [ NativeUi.Elements.view
             [ NativeUi.style
                 [ NativeUi.Style.flex 1 ]
-            ]
+
             -- container
-            [ NativeUi.Elements.view
-                --- TODO tisis the toolbar
-                []
+            ]
+            [ NativeUi.customNode
+                "ToolbarAndroid"
+                Native.LayoutToolbarAndroid.toolbarAndroidView
+                [ NativeUi.style
+                    [ NativeUi.Style.height 56 ]
+                , navIcon (Image.Image.imgSrc "hamburger")
+                , NativeUi.property "title" (Json.Encode.string "title") -- not actually title
+                ]
                 []
             , props.todoEntryNode
             , NativeUi.Elements.view
                 [ NativeUi.style
                     [ NativeUi.Style.flex 1 ]
-                ]
+
                 -- container
+                ]
                 children
             ]
         ]
