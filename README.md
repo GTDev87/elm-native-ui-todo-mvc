@@ -20,6 +20,22 @@ $ npm run compile
 
 finally:
 
+ios: 
 ```bash
-$ react-native run-ios 
+$ react-native run-ios # this runs emulator
 ```
+
+android: 
+```bash
+$ react-native run-android
+$ react-native start --reset-cache
+```
+
+Development
+terminal:
+```bash
+npm run compile 
+```
+
+ios emulator updates ctrl (command) - R
+android emulator updates R + R
