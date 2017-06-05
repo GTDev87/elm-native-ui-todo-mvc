@@ -18,7 +18,7 @@ navigationTab : Control.View.Navigation.TabType -> NativeUi.Node Todo.Msg.Msg
 navigationTab tabType =
     NativeUi.Elements.touchableHighlight
         [ NativeUi.Properties.underlayColor "#ccc"
-        , NativeUi.Events.onPress (Todo.Msg.MsgForControl <| Control.Msg.ChangeVisibility tabType.visibility)
+        , NativeUi.Events.onPress (Todo.Msg.MsgForControl <| Control.Msg.ChangeVisibility tabType.visibility) -- also needs to send a close message...
         , NativeUi.property "key" (Json.Encode.string tabType.title)
         ]
         [ NativeUi.Elements.view
