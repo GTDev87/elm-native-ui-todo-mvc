@@ -33,7 +33,7 @@ taskEntry taskEntry props =
             , NativeUi.property "value" (Encode.string taskEntry.description) -- set an initial value
             , NativeUi.property "placeholder" (Encode.string "What needs to be done?")
             , NativeUi.on "onChangeText" (Decode.map (Todo.Msg.MsgForTaskEntry << Task.Msg.Update) Decode.string)
-            , NativeUi.on "onSubmitEditing" (Decode.succeed (Todo.Msg.MsgForTaskList <| TaskList.Msg.Add taskEntry.id taskEntry.description))
+            , NativeUi.on "onSubmitEditing" (Decode.succeed (Todo.Msg.MsgForTaskList <| TaskList.Msg.Add taskEntry.id (Debug.log "taskEntry.description" taskEntry.description)))
             ]
             []
         ]

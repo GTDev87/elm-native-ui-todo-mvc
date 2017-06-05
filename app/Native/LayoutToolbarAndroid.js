@@ -1,6 +1,6 @@
 const _ohanhi$elm_native_ui$Native_LayoutToolbarAndroid = function () {
   const React = require('react');
-  const DrawerLayoutAndroid = require('DrawerLayoutAndroid');
+  const { DrawerLayoutAndroid } = require('react-native');
   const ToolbarAndroid = require('ToolbarAndroid');
 
   let androidDrawer = null; // maybe make a "ref" solution
@@ -8,17 +8,30 @@ const _ohanhi$elm_native_ui$Native_LayoutToolbarAndroid = function () {
   const DrawerLayoutAndroidWrapper = (props) =>
     <DrawerLayoutAndroid
       {...props}
-      ref={(drawer) => { androidDrawer = drawer; }}
+      ref={
+        (drawer) => {
+          console.log("ref started");
+          androidDrawer = drawer;
+        }
+      }
+      drawerPosition={DrawerLayoutAndroid.positions.Left}
     />;
 
   const ToolbarAndroidWrapper = (props) =>
     <ToolbarAndroid
       {...props}
-      onIconClicked={() =>  androidDrawer.openDrawer() }
+      onIconClicked={
+        () => {
+          console.log("icon clicked");
+          androidDrawer.openDrawer();
+        }
+      }
     />;
 
+  console.log("stuff stuff stuff")
+
   return {
-    toolbarAndroidView: ToolbarAndroidWrapper,
     drawerLayoutAndroidView: DrawerLayoutAndroidWrapper,
+    toolbarAndroidView: ToolbarAndroidWrapper,
   };
 }();
