@@ -37,5 +37,16 @@ terminal:
 npm run compile 
 ```
 
-ios emulator updates ctrl (command) - R
-android emulator updates R + R
+ios:
+
+emulator updates: ctrl (command) - R
+Enable logging from menu
+
+android:
+
+emulator updates: R + R
+logging:
+```bash
+adb -e logcat
+```
+
