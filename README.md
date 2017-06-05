@@ -26,7 +26,12 @@ $ react-native run-ios # this runs emulator
 ```
 
 android: 
+Run emulator:
+
+
 ```bash
+$ android avd # Simple instruction for emulator
+
 $ react-native run-android
 $ react-native start --reset-cache
 ```
@@ -34,7 +39,7 @@ $ react-native start --reset-cache
 Development
 terminal:
 ```bash
-npm run compile 
+$ npm run compile 
 ```
 
 ios:
@@ -47,6 +52,6 @@ android:
 emulator updates: R + R
 logging:
 ```bash
-adb -e logcat
+$ adb -e logcat
 ```
 
