@@ -25,8 +25,7 @@ ios:
 $ react-native run-ios # this runs emulator
 ```
 
-android: 
-Run emulator:
+android:
 
 
 ```bash
@@ -45,6 +44,7 @@ $ npm run compile
 ios:
 
 emulator updates: ctrl (command) - R
+
 Enable logging from menu
 
 android:
