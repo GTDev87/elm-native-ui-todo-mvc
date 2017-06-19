@@ -8,11 +8,7 @@ const hamburger = require('./app/Control/Images/hamburger@2x.png');
 
 const _ohanhi$elm_native_ui$Native_Image = function () {
   const images = { checked, unchecked, active, all, completed, hamburger };
-  function loadImage(imageName) {
-    return images[imageName];
-  }
+  const loadImage = (imageName) => images[imageName];
 
-  return {
-    loadImage,
-  };
+  return { loadImage };
 }();
