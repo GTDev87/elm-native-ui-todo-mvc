@@ -68,3 +68,4 @@ $ adb -e logcat
 - [ ] Server
   - [ ] Get data graphql Endpoint to receive data from
   - [ ] Create Elixir project to get data from
+  - [ ] Add login between elixir stack and elm stack
