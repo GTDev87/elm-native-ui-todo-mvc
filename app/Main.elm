@@ -22,7 +22,7 @@ updateWithCmd porttype msg model =
     ( Todo.Update.update msg model, updateCmd porttype msg )
 
 
-port androidOpenTab : Bool -> Cmd msg
+port somePort : Bool -> Cmd msg
 
 
 main : Program Never Todo.Model.Model Todo.Msg.Msg
@@ -30,6 +30,6 @@ main =
     NativeUi.program
         { init = Todo.Model.init
         , view = Todo.View.view
-        , update = (\msg model -> updateWithCmd androidOpenTab msg model)
+        , update = (\msg model -> updateWithCmd somePort msg model)
         , subscriptions = \_ -> Sub.none
         }

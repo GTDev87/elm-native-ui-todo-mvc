@@ -16,7 +16,7 @@ import Native.LayoutToolbarAndroid
 
 navigationTab : Control.Types.TabType -> NativeUi.Node Todo.Msg.Msg
 navigationTab tabType =
-    NativeUi.Elements.touchableHighlight
+    closingTouchableHighlightView
         [ NativeUi.Properties.underlayColor "#ccc"
         , NativeUi.Events.onPress (Todo.Msg.MsgForControl <| Control.Msg.ChangeVisibility tabType.visibility) -- also needs to send a close message...
         , NativeUi.property "key" (Json.Encode.string tabType.title)
@@ -73,6 +73,11 @@ renderNavigation model props _ =
 navIcon : Int -> NativeUi.Property msg
 navIcon val =
     NativeUi.property "navIcon" (Json.Encode.int val)
+
+
+closingTouchableHighlightView : List (NativeUi.Property msg) -> List (NativeUi.Node msg) -> NativeUi.Node msg
+closingTouchableHighlightView =
+    NativeUi.customNode "ClosingTouchableHighlight" Native.LayoutToolbarAndroid.closingTouchableHighlightView
 
 
 drawerLayoutAndroidView : List (NativeUi.Property msg) -> List (NativeUi.Node msg) -> NativeUi.Node msg
