@@ -1,4 +1,4 @@
-module Control.View.NavigationAndroid exposing (..)
+module NavigationAndroid.View exposing (..)
 
 import NativeUi.Elements
 import NativeUi.Events
@@ -6,7 +6,7 @@ import NativeUi.Properties
 import NativeUi
 import NativeUi.Style
 import Todo.Msg
-import Control.View.Navigation
+import Control.Types
 import Control.Model
 import Control.Msg
 import Json.Encode
@@ -14,7 +14,7 @@ import Image.Image
 import Native.LayoutToolbarAndroid
 
 
-navigationTab : Control.View.Navigation.TabType -> NativeUi.Node Todo.Msg.Msg
+navigationTab : Control.Types.TabType -> NativeUi.Node Todo.Msg.Msg
 navigationTab tabType =
     NativeUi.Elements.touchableHighlight
         [ NativeUi.Properties.underlayColor "#ccc"
@@ -48,7 +48,7 @@ navigationTab tabType =
         ]
 
 
-renderNavigation : Control.Model.Model -> Control.View.Navigation.Props -> a -> NativeUi.Node Todo.Msg.Msg
+renderNavigation : Control.Model.Model -> Control.Types.Props -> a -> NativeUi.Node Todo.Msg.Msg
 renderNavigation model props _ =
     NativeUi.Elements.view
         [ NativeUi.style
@@ -85,7 +85,7 @@ toolbarAndroidView =
     NativeUi.customNode "ToolbarAndroid2" Native.LayoutToolbarAndroid.toolbarAndroidView
 
 
-view : Control.Model.Model -> Control.View.Navigation.Props -> List (NativeUi.Node Todo.Msg.Msg) -> NativeUi.Node Todo.Msg.Msg
+view : Control.Model.Model -> Control.Types.Props -> List (NativeUi.Node Todo.Msg.Msg) -> NativeUi.Node Todo.Msg.Msg
 view model props children =
     let
         title =

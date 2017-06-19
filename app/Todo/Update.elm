@@ -54,12 +54,10 @@ updateControl msgFor control =
             control
 
 
-update : Todo.Msg.Msg -> Todo.Model.Model -> ( Todo.Model.Model, Cmd Todo.Msg.Msg )
+update : Todo.Msg.Msg -> Todo.Model.Model -> Todo.Model.Model
 update msg model =
-    ( { model
+    { model
         | taskEntry = updateEntry msg model.taskEntry
         , taskList = updateTaskList msg model.taskList
         , control = updateControl msg model.control
-      }
-    , Cmd.none
-    )
+    }

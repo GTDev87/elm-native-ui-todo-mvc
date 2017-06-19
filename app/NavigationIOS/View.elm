@@ -1,4 +1,4 @@
-module Control.View.NavigationIOS exposing (..)
+module NavigationIOS.View exposing (..)
 
 import Native.TabBarItemIOS
 import NativeUi.Elements
@@ -8,7 +8,7 @@ import NativeUi
 import Todo.Msg
 import Control.Msg
 import Json.Encode
-import Control.View.Navigation
+import Control.Types
 import Control.Model
 import Image.Image
 
@@ -24,7 +24,7 @@ icon val =
     NativeUi.property "icon" (Json.Encode.int val)
 
 
-tabBarItem : Control.Model.Model -> Control.View.Navigation.TabType -> List (NativeUi.Node Todo.Msg.Msg) -> NativeUi.Node Todo.Msg.Msg
+tabBarItem : Control.Model.Model -> Control.Types.TabType -> List (NativeUi.Node Todo.Msg.Msg) -> NativeUi.Node Todo.Msg.Msg
 tabBarItem model tabType children =
     let
         selected =
@@ -46,7 +46,7 @@ tabBarItem model tabType children =
             ]
 
 
-view : Control.Model.Model -> Control.View.Navigation.Props -> List (NativeUi.Node Todo.Msg.Msg) -> NativeUi.Node Todo.Msg.Msg
+view : Control.Model.Model -> Control.Types.Props -> List (NativeUi.Node Todo.Msg.Msg) -> NativeUi.Node Todo.Msg.Msg
 view model props children =
     NativeUi.Elements.view
         [ NativeUi.style

@@ -1,4 +1,4 @@
-module Control.View.Navigation exposing (..)
+module Control.Types exposing (..)
 
 import Control.Model
 import NativeUi

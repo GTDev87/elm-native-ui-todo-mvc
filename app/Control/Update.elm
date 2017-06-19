@@ -2,6 +2,7 @@ module Control.Update exposing (..)
 
 import Control.Msg
 import Control.Model
+import Todo.Msg
 
 
 update : Control.Msg.Msg -> Control.Model.Model -> Control.Model.Model

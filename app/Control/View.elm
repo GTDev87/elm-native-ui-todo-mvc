@@ -3,13 +3,13 @@ module Control.View exposing (..)
 import NativeApi.Platform
 import NativeUi
 import NativeUi.Elements
-import Control.View.NavigationIOS
-import Control.View.NavigationAndroid
+import NavigationIOS.View
+import NavigationAndroid.View
 import NativeUi.Style
 import Task.Model
 import Todo.Msg
 import Control.Model
-import Control.View.Navigation
+import Control.Types
 
 
 type alias Props =
@@ -42,9 +42,9 @@ view model props children =
 
         navigation =
             if isIos then
-                Control.View.NavigationIOS.view
+                NavigationIOS.View.view
             else
-                Control.View.NavigationAndroid.view
+                NavigationAndroid.View.view
     in
         NativeUi.Elements.view
             [ NativeUi.style
@@ -56,7 +56,7 @@ view model props children =
                 NativeUi.Elements.view [] []
             , navigation
                 model
-                { tabTypes = Control.View.Navigation.tabTypes
+                { tabTypes = Control.Types.tabTypes
                 , todoEntryNode = props.todoEntryNode
                 }
                 children
