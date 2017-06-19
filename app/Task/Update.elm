@@ -15,3 +15,6 @@ update msg model =
 
         Task.Msg.Update description ->
             { model | description = description }
+
+        _ ->
+            model

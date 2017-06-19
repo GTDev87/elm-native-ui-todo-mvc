@@ -84,6 +84,18 @@ view task =
                 editingView task
             else
                 textView task
+
+        onPressFn =
+            if task.editing then
+                Todo.Msg.NoOp
+            else
+                Todo.Msg.MsgForTask task.id <| Task.Msg.Check (not task.completed)
+
+        onLongPressFn =
+            if task.completed then
+                Todo.Msg.NoOp
+            else
+                Todo.Msg.MsgForTask task.id <| Task.Msg.Editing True
     in
         SwipeoutView.SwipeoutView.view
             [ SwipeoutView.SwipeoutView.backgroundColor "transparent"
@@ -95,8 +107,8 @@ view task =
             , SwipeoutView.SwipeoutView.autoClose True
             ]
             [ NativeUi.Elements.touchableOpacity
-                [ NativeUi.Events.onPress (Todo.Msg.MsgForTask task.id <| Task.Msg.Check (not task.completed))
-                , NativeUi.Events.onLongPress (Todo.Msg.MsgForTask task.id <| Task.Msg.Editing (not task.editing))
+                [ NativeUi.Events.onPress onPressFn
+                , NativeUi.Events.onLongPress onLongPressFn
                 , NativeUi.Properties.underlayColor "transparent"
                 ]
                 [ NativeUi.Elements.view

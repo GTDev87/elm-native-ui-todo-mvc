@@ -5,3 +5,4 @@ type Msg
     = Update String
     | Check Bool
     | Editing Bool
+    | NoOp
