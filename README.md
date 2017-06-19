@@ -55,3 +55,16 @@ logging:
 $ adb -e logcat
 ```
 
+## To Do (not all in order)
+
+- [x] Basic PoC
+  - [x] Have runnin in IOS
+  - [x] Have runnin in Android
+- [ ] Polish
+- [ ] Add web version
+  - [ ] Reuse code between elm-native-ui and http version
+  - [ ] Server side rendering
+- [ ] Use device/local storage
+- [ ] Server
+  - [ ] Get data graphql Endpoint to receive data from
+  - [ ] Create Elixir project to get data from
